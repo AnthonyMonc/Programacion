@@ -159,6 +159,7 @@ Menu me=new Menu();
     }//GEN-LAST:event_btn_regresarLActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         dtm = (DefaultTableModel) tbl_libros.getModel();
         String id = txt_busq.getText();
             modelo.Libros consultaLibro = new Metodos_libro().Buscarlibro(id);

@@ -180,7 +180,7 @@ Metodos_autores met = new Metodos_autores();
     }//GEN-LAST:event_btn_regresarUActionPerformed
 
     private void btn_salirUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirUActionPerformed
-this.dispose();        // TODO add your handling code here:
+    this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btn_salirUActionPerformed
 
     public void eliminar(){ 
