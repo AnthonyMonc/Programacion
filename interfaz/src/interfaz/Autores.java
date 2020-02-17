@@ -154,7 +154,23 @@ Metodos_autores met = new Metodos_autores();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_buscarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarUActionPerformed
-        // TODO add your handling code here:
+            
+            dtm = (DefaultTableModel) tbl_autoresU.getModel();
+            String id = txt_busq.getText();
+            autores consultaautor = new Metodos_autores().Buscarautor(id);
+            eliminar();
+            Vector fila = new Vector();
+            fila.add(consultaautor.getNombre());
+            fila.add(consultaautor.getApellido());
+            fila.add(consultaautor.getFecha());
+            fila.add(consultaautor.getNum_libros());
+            if (consultaautor.isEcuatoriano()==true){
+            fila.add("Si es");
+            }else {
+            fila.add("No lo es");
+            }
+            dtm.addRow(fila);
+            
     }//GEN-LAST:event_btn_buscarUActionPerformed
 
     private void btn_regresarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarUActionPerformed
@@ -167,6 +183,18 @@ Menu me=new Menu();
 this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btn_salirUActionPerformed
 
+    public void eliminar(){ 
+     try{
+        DefaultTableModel dtm = (DefaultTableModel) tbl_autoresU.getModel();
+        int a = tbl_autoresU.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        dtm.removeRow(dtm.getRowCount()-1);
+        } 
+     }catch(Exception ex){
+         System.out.println("Error al limpiar tabla");
+     }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscarU;
     private javax.swing.JButton btn_regresarU;

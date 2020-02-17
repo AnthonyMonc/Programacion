@@ -30,29 +30,51 @@ public class Metodos_autores {
     public List<autores> ListarAutor() {
         List<autores> listaautores = new ArrayList<autores>();
         autores autor= null;
-        String sqlCliente = "SELECT * FROM AUTORES a";
-        Statement stCliente = null;
+        String sqlautor = "SELECT * FROM AUTORES a";
+        Statement stautor = null;
         
         try {
-                stCliente= conexion.getConxion().createStatement();
-                rs = stCliente.executeQuery(sqlCliente);
+                stautor= conexion.getConxion().createStatement();
+                rs = stautor.executeQuery(sqlautor);
                 while(rs.next()){
                 int id_cliente= rs.getInt("COD_AUTOR");
                 String nom= rs.getString("NOMBRES");
                 String ape= rs.getString("APELLIDO");
                 Date fecha= rs.getDate("FEC_NAC");
-                int tratamientos = rs.getInt("NUM_LIBROS");
-                boolean edad= rs.getBoolean("ECUATORIANO");
-                autor = new  autores(id_cliente, nom, ape, (java.sql.Date) fecha, tratamientos, edad);
+                int num_l = rs.getInt("NUM_LIBROS");
+                boolean e= rs.getBoolean("ECUATORIANO");
+                autor = new  autores(id_cliente, nom, ape, (java.sql.Date) fecha, num_l, e);
                 listaautores.add(autor);
             }
-            } catch (SQLException ex) {
-                //Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {//Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
        return listaautores; 
     }
-    
-    
-    
+    public autores Buscarautor(String autors){ 
+        autores autor=null;
+        String sqlCliente ="SELECT * FROM AUTORES  WHERE NOMBRES like ?"
+                + " or APELLIDO like ? ";
+        PreparedStatement psCliente = null;
+        ResultSet rsCliente = null;
+            try {
+                psCliente = conexion.getConxion().prepareStatement(sqlCliente);
+                psCliente.setString(1,autors+"%");
+                //psCliente.setString(2,Integer.parseInt(autors)+"%");
+                psCliente.setString(2,autors+"%");
+                rsCliente=psCliente.executeQuery();               
+                while(rsCliente.next()){
+                int id_cliente= rsCliente.getInt("COD_AUTOR");
+                String nom= rsCliente.getString("NOMBRES");
+                String ape= rsCliente.getString("APELLIDO");
+                Date fecha= rsCliente.getDate("FEC_NAC");
+                int num_l = rsCliente.getInt("NUM_LIBROS");
+                boolean e= rsCliente.getBoolean("ECUATORIANO");
+                autor = new autores(id_cliente, nom, ape, (java.sql.Date) fecha, num_l, e);;
+            }
+            } catch (SQLException ex) {
+                System.err.println("No se puede obtener contactos"+ ex.getMessage());
+            }
+            return autor;
+    }
+   
 }
