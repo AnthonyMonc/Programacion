@@ -25,7 +25,7 @@ public class Metodos_autores {
     
     ResultSet rs = null;
     PreparedStatement ps = null;
-    ConexionBDD conexion = new ConexionBDD();;
+    ConexionBDD conexion = new ConexionBDD();
    
     public List<autores> ListarAutor() {
         List<autores> listaautores = new ArrayList<autores>();
@@ -50,6 +50,7 @@ public class Metodos_autores {
             }
        return listaautores; 
     }
+    
     public autores Buscarautor(String autors){ 
         autores autor=null;
         String sqlCliente ="SELECT * FROM AUTORES  WHERE NOMBRES like ?"

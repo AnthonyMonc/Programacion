@@ -104,7 +104,7 @@ Metodos_autores met = new Metodos_autores();
             }
         });
 
-        jLabel2.setText("LIBRO:");
+        jLabel2.setText("AUTOR:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -130,7 +130,7 @@ Metodos_autores met = new Metodos_autores();
                     .addGroup(layout.createSequentialGroup()
                         .addGap(205, 205, 205)
                         .addComponent(btn_salirU)))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,9 +174,9 @@ Metodos_autores met = new Metodos_autores();
     }//GEN-LAST:event_btn_buscarUActionPerformed
 
     private void btn_regresarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarUActionPerformed
-Menu me=new Menu();
-  me.setVisible(true);
-  this.setVisible(false);
+    Menu me=new Menu();
+    me.setVisible(true);
+    this.setVisible(false);
     }//GEN-LAST:event_btn_regresarUActionPerformed
 
     private void btn_salirUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirUActionPerformed
