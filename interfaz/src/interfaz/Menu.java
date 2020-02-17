@@ -5,12 +5,6 @@
  */
 package interfaz;
 
-import java.awt.Dimension;
-import javax.swing.JInternalFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-
 /**
  *
  * @author Usuario
@@ -22,29 +16,12 @@ public class Menu extends javax.swing.JFrame {
      */
     public Menu() {
         initComponents();
+        
         setExtendedState(MAXIMIZED_BOTH);
         j_loguin.setEnabled(true);
-        j_cliente.setEnabled(true);
-        j_administrador.setEnabled(true);
+        j_autor.setEnabled(true);
+       
     }
-
-    public JMenu getJ_administrador() {
-        return j_administrador;
-    }
-
-    public void setJ_administrador(JMenu j_administrador) {
-        this.j_administrador = j_administrador;
-    }
-
-    public JMenu getJ_cliente() {
-        return j_cliente;
-    }
-
-    public void setJ_cliente(JMenu j_cliente) {
-        this.j_cliente = j_cliente;
-    }
-    
-  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +36,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         j_loguin = new javax.swing.JMenuItem();
@@ -69,6 +45,8 @@ public class Menu extends javax.swing.JFrame {
         j_administrador = new javax.swing.JMenu();
         j_Mlibros = new javax.swing.JMenuItem();
         j_Mautores = new javax.swing.JMenuItem();
+        j_agregarL = new javax.swing.JMenuItem();
+        j_agregarA = new javax.swing.JMenuItem();
 
         jMenu3.setText("jMenu3");
 
@@ -79,17 +57,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
-        );
 
         jMenu1.setText("Menu ");
 
@@ -151,6 +118,22 @@ public class Menu extends javax.swing.JFrame {
         });
         j_administrador.add(j_Mautores);
 
+        j_agregarL.setText("Agregar libros");
+        j_agregarL.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j_agregarLActionPerformed(evt);
+            }
+        });
+        j_administrador.add(j_agregarL);
+
+        j_agregarA.setText("Agregar autore");
+        j_agregarA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                j_agregarAActionPerformed(evt);
+            }
+        });
+        j_administrador.add(j_agregarA);
+
         jMenuBar1.add(j_administrador);
 
         setJMenuBar(jMenuBar1);
@@ -159,23 +142,21 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 277, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void j_loguinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_loguinActionPerformed
-        Loguin log = new Loguin(this);
-        showJInternalFrameCenterPosition(log);    
+        Loguin log = new Loguin();
+        log.setVisible(true);
+        this.setVisible(false);
+
     }//GEN-LAST:event_j_loguinActionPerformed
 
     private void j_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_autorActionPerformed
@@ -216,16 +197,18 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_j_autorMouseClicked
 
-      private void showJInternalFrameCenterPosition(JInternalFrame jInternalFrame) {
-        jPanel1.add(jInternalFrame);
-        Dimension componentDim = jInternalFrame.getSize();
-        Dimension desktopDim = jPanel1.getSize();
-        int width = (int) (desktopDim.getWidth() - componentDim.getWidth()) / 2;
-        int heigth = (int) (desktopDim.getHeight() - componentDim.getHeight()) / 2;
-        Dimension positionDim = new Dimension(width, heigth);
-        jInternalFrame.setBounds((int) positionDim.getWidth(), (int) positionDim.getHeight(), jInternalFrame.getWidth(), jInternalFrame.getHeight());
-        jInternalFrame.setVisible(true);
-    }
+    private void j_agregarAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_agregarAActionPerformed
+        Agregar_autores ma=new Agregar_autores();
+       ma.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_j_agregarAActionPerformed
+
+    private void j_agregarLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_agregarLActionPerformed
+       Agregar_libros ma=new Agregar_libros();
+       ma.setVisible(true);
+       this.setVisible(false);
+    }//GEN-LAST:event_j_agregarLActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,15 +251,14 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem j_Mautores;
     private javax.swing.JMenuItem j_Mlibros;
     private javax.swing.JMenu j_administrador;
+    private javax.swing.JMenuItem j_agregarA;
+    private javax.swing.JMenuItem j_agregarL;
     private javax.swing.JMenuItem j_autor;
     private javax.swing.JMenu j_cliente;
     private javax.swing.JMenuItem j_libros;
     private javax.swing.JMenuItem j_loguin;
     // End of variables declaration//GEN-END:variables
-
-
 }

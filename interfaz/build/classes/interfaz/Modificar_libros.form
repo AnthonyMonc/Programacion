@@ -25,41 +25,49 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="144" max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="452" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="608" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
-                      <Component id="btn_buscarU" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="btn_regresarU" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Component id="btn_salirU" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="90" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_eliminarML" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_actualizarML" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btn_salirML" min="-2" max="-2" attributes="0"/>
+                          <Component id="btn_regresarML" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace pref="26" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="226" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="113" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btn_buscarU" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_regresarU" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btn_salirU" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_eliminarML" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_regresarML" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="49" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="btn_actualizarML" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="btn_salirML" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="58" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -67,7 +75,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Autores"/>
+        <Property name="text" type="java.lang.String" value="Modificar LIbros"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -77,19 +85,31 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tbl_autoresU">
+        <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="0">
-                <Column editable="true" title="Nombres" type="java.lang.String"/>
-                <Column editable="true" title="Apellido" type="java.lang.String"/>
-                <Column editable="true" title="Fecha de Naci." type="java.lang.String"/>
-                <Column editable="true" title="N. Libros" type="java.lang.Integer"/>
-                <Column editable="true" title="Ecuatoriano" type="java.lang.Boolean"/>
+              <Table columnCount="7" rowCount="0">
+                <Column editable="true" title="ICBN" type="java.lang.Integer"/>
+                <Column editable="true" title="Nombre" type="java.lang.String"/>
+                <Column editable="true" title="Numero de Pag." type="java.lang.Integer"/>
+                <Column editable="true" title="Edicion" type="java.lang.String"/>
+                <Column editable="true" title="Fecha publicacion" type="java.lang.Integer"/>
+                <Column editable="true" title="Nombre editorial" type="java.lang.String"/>
+                <Column editable="true" title="Aurtor ID" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -124,28 +144,30 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btn_buscarU">
+    <Component class="javax.swing.JButton" name="btn_eliminarML">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Buscar"/>
+        <Property name="text" type="java.lang.String" value="Eliminar"/>
       </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_buscarUActionPerformed"/>
-      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_regresarU">
+    <Component class="javax.swing.JButton" name="btn_actualizarML">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Actualizar"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="btn_regresarML">
       <Properties>
         <Property name="text" type="java.lang.String" value="Regresar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_regresarUActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_regresarMLActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btn_salirU">
+    <Component class="javax.swing.JButton" name="btn_salirML">
       <Properties>
         <Property name="text" type="java.lang.String" value="SALIR"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_salirUActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_salirMLActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -6,25 +6,15 @@
 
 package interfaz;
 
-
-
-import controlador.Metodo_usuario;
-import javax.swing.JOptionPane;
-import modelo.Usuario;
-
 /**
  *
  * @author Usuario
  */
-public class Loguin extends javax.swing.JInternalFrame{
-    Usuario usua = new Usuario();
-    Metodo_usuario met = new Metodo_usuario();
-    private Menu principal;
+public class Loguin extends javax.swing.JFrame {
+
     /** Creates new form Loguin */
-    public Loguin(Menu p) {
+    public Loguin() {
         initComponents();
-        principal = p;
-        setTitle("Ingreso al Sistema");
     }
 
     /** This method is called from within the constructor to
@@ -40,9 +30,9 @@ public class Loguin extends javax.swing.JInternalFrame{
         lbl_usuario = new javax.swing.JLabel();
         lbl_contraseña = new javax.swing.JLabel();
         txt_usuario = new javax.swing.JTextField();
+        txt_contraseña = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btn_regresar = new javax.swing.JButton();
-        psw_contr = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,12 +48,13 @@ public class Loguin extends javax.swing.JInternalFrame{
             }
         });
 
-        jButton1.setText("Ingresar ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        txt_contraseña.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                txt_contraseñaActionPerformed(evt);
             }
         });
+
+        jButton1.setText("Ingresar ");
 
         btn_regresar.setText("Regresar");
         btn_regresar.addActionListener(new java.awt.event.ActionListener() {
@@ -88,7 +79,7 @@ public class Loguin extends javax.swing.JInternalFrame{
                             .addComponent(lbl_contraseña))
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(psw_contr, javax.swing.GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
+                            .addComponent(txt_contraseña, javax.swing.GroupLayout.DEFAULT_SIZE, 78, Short.MAX_VALUE)
                             .addComponent(txt_usuario)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(97, 97, 97)
@@ -109,7 +100,7 @@ public class Loguin extends javax.swing.JInternalFrame{
                 .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl_contraseña)
-                    .addComponent(psw_contr, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_contraseña, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
@@ -124,51 +115,25 @@ public class Loguin extends javax.swing.JInternalFrame{
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_usuarioActionPerformed
 
+    private void txt_contraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_contraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_contraseñaActionPerformed
+
     private void btn_regresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarActionPerformed
-    Menu me=new Menu();
-    me.setVisible(true);
-    this.setVisible(false);
+  Menu me=new Menu();
+  me.setVisible(true);
+  this.setVisible(false);
+
     }//GEN-LAST:event_btn_regresarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        autenticar();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void autenticar() {
-        
-        Usuario perfil;
-        
-        System.out.println(txt_usuario.getText() + " " + psw_contr.getPassword());
-        perfil = met.Perfiles(txt_usuario.getText(), new String(psw_contr.getPassword()));
-
-        if (perfil != null && perfil.getPermiso() == 'c') { //cliente
-            System.out.println(txt_usuario.getText() + " " + psw_contr.getPassword());
-            principal.getJ_administrador().setEnabled(true);
-            principal.getJ_cliente().setEnabled(true);
-            JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
-
-        } else if (perfil != null && perfil.getPermiso() == 'a') { //administrador
-            principal.getJ_administrador().setEnabled(true);
-            principal.getJ_cliente().setEnabled(true);
-            JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
-
-        } else { //autenticacion fallida
-            principal.getJ_administrador().setEnabled(false);
-            principal.getJ_cliente().setEnabled(false);
-            JOptionPane.showMessageDialog(this, "Credenciales invalidas", "FAIL", JOptionPane.ERROR_MESSAGE);
-        }
-        dispose();
-    }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_regresar;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel lbl_contraseña;
     private javax.swing.JLabel lbl_usuario;
     private javax.swing.JLabel lblloguin;
-    private javax.swing.JPasswordField psw_contr;
+    private javax.swing.JTextField txt_contraseña;
     private javax.swing.JTextField txt_usuario;
     // End of variables declaration//GEN-END:variables
-
 
 }
