@@ -5,17 +5,40 @@
  */
 package interfaz;
 
+import controlador.Metodos_libro;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Usuario
  */
 public class Modificar_libros extends javax.swing.JFrame {
-
+    public String nombre;
+    private DefaultTableModel dtm;
+    Metodos_libro metl = new Metodos_libro();
     /**
      * Creates new form Modificar_libros
      */
     public Modificar_libros() {
         initComponents();
+        List<modelo.Libros> libro = metl.ListarLibro();
+        dtm = (DefaultTableModel) tbl_lib.getModel();
+        
+        for (modelo.Libros li: libro) {
+           Vector fila = new Vector();
+//            fila.add(au.getId_autor());
+            fila.add(li.getIcbn());
+            fila.add(li.getNombre());
+            fila.add(li.getNum_pag());
+            fila.add(li.getEdicion());
+            fila.add(li.getFecha());
+            fila.add(li.getNom_edt());
+            fila.add(li.getAutor_id());
+            dtm.addRow(fila);
+        }
     }
 
     /**
@@ -29,7 +52,7 @@ public class Modificar_libros extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_lib = new javax.swing.JTable();
         btn_eliminarML = new javax.swing.JButton();
         btn_actualizarML = new javax.swing.JButton();
         btn_regresarML = new javax.swing.JButton();
@@ -39,7 +62,7 @@ public class Modificar_libros extends javax.swing.JFrame {
 
         jLabel1.setText("Modificar LIbros");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_lib.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -62,11 +85,16 @@ public class Modificar_libros extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_lib);
 
         btn_eliminarML.setText("Eliminar");
 
         btn_actualizarML.setText("Actualizar");
+        btn_actualizarML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarMLActionPerformed(evt);
+            }
+        });
 
         btn_regresarML.setText("Regresar");
         btn_regresarML.addActionListener(new java.awt.event.ActionListener() {
@@ -137,6 +165,19 @@ Menu me=new Menu();
 this.dispose();
     }//GEN-LAST:event_btn_salirMLActionPerformed
 
+    private void btn_actualizarMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarMLActionPerformed
+           int filaSeleccionada = tbl_lib.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+            DefaultTableModel modelo = (DefaultTableModel) tbl_lib.getModel();
+            nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
+             //Modifica_Cliente mc = new Modifica_Cliente();
+             //mc.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione la fila a modificar");
+        }
+        
+    }//GEN-LAST:event_btn_actualizarMLActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizarML;
     private javax.swing.JButton btn_eliminarML;
@@ -144,6 +185,6 @@ this.dispose();
     private javax.swing.JButton btn_salirML;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_lib;
     // End of variables declaration//GEN-END:variables
 }

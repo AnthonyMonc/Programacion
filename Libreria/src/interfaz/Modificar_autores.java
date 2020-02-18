@@ -5,17 +5,41 @@
  */
 package interfaz;
 
+import controlador.Metodos_autores;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.table.DefaultTableModel;
+import modelo.autores;
+
 /**
  *
  * @author Usuario
  */
 public class Modificar_autores extends javax.swing.JFrame {
-
+private DefaultTableModel dtm;
+Metodos_autores met = new Metodos_autores();
     /**
      * Creates new form Modificar_autores
      */
     public Modificar_autores() {
         initComponents();
+        List<autores> autor = met.ListarAutor();
+        dtm = (DefaultTableModel) tbl_aut.getModel();
+        
+        for (autores au: autor) {
+           Vector fila = new Vector();
+//            fila.add(au.getId_autor());
+            fila.add(au.getNombre());
+            fila.add(au.getApellido());
+            fila.add(au.getFecha());
+            fila.add(au.getNum_libros());
+            if (au.isEcuatoriano()==true){
+            fila.add("Si es");
+            }else {
+            fila.add("No lo es");
+            }
+            dtm.addRow(fila);
+        }
     }
 
     /**
@@ -29,7 +53,7 @@ public class Modificar_autores extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbl_aut = new javax.swing.JTable();
         btn_eliminarMA = new javax.swing.JButton();
         btn_regresarMA = new javax.swing.JButton();
         btn_actualizarMA = new javax.swing.JButton();
@@ -39,7 +63,7 @@ public class Modificar_autores extends javax.swing.JFrame {
 
         jLabel1.setText("Modificar Autores");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbl_aut.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -62,7 +86,7 @@ public class Modificar_autores extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbl_aut);
 
         btn_eliminarMA.setText("Eliminar");
 
@@ -97,7 +121,7 @@ public class Modificar_autores extends javax.swing.JFrame {
                 .addContainerGap(19, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_actualizarMA)
                     .addComponent(btn_eliminarMA))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -146,6 +170,6 @@ this.dispose();
     private javax.swing.JButton btn_salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbl_aut;
     // End of variables declaration//GEN-END:variables
 }
