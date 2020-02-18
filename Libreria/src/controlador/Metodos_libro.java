@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Libros;
 
 /**
@@ -81,28 +82,25 @@ public class Metodos_libro {
             return libro;
     }
     
-    public void ActualizarCliente(Libros lib) {
-        long fecha = lib.getFecha().getTime();
-        java.sql.Date fechanac= new java.sql.Date(fecha);
-        
-        String sqlCliente = "UPDATE LIBROS SET ICBN=?, NOMBRE=?, NUM_PAG=?, EDICION=?, "
-                + " FEC_PUBLIC=?, NOM_EDITORIAL=?, AUTORID=? WHERE NOMBRE = ?";
-        PreparedStatement psCliente =null;
+    public void Actualizarlibro(Libros lib) {
+
+        String sqlCliente = "UPDATE LIBROS SET ICBN=?, NOMBRE=?, NUM_PAG=?, EDICION=?, FEC_PUBLIC=?, NOM_EDITORIAL=?, AUTORID=? WHERE NOMBRE=? ";
+        PreparedStatement ps =null;
             try {
-                psCliente = conexion.getConxion().prepareStatement(sqlCliente);
-                psCliente.setInt(1, lib.getIcbn());
-                psCliente.setString(2, lib.getNombre());
-                psCliente.setInt(3, lib.getNum_pag());
-                psCliente.setInt(4, lib.getEdicion());
-                psCliente.setDate(5, fechanac);
-                psCliente.setString(6, lib.getNom_edt());
-                psCliente.setInt(7, lib.getAutor_id());
-                psCliente.executeUpdate();
+                ps= conexion.getConxion().prepareStatement(sqlCliente);
+                ps.setInt(1, lib.getIcbn());
+                ps.setString(2, lib.getNombre());
+                ps.setInt(3, lib.getNum_pag());
+                ps.setInt(4, lib.getEdicion());
+                ps.setDate(5, lib.getFecha());
+                ps.setString(6, lib.getNom_edt());
+                ps.setInt(7, lib.getAutor_id());
+                ps.setString(8, lib.getNombre());
+                
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Datos Actualizados");
                 
             } catch (SQLException ex) {
              //   Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
             }}
-    
-    
-    
 }

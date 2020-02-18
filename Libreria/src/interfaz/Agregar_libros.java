@@ -5,17 +5,39 @@
  */
 package interfaz;
 
+import controlador.Metodos_libro;
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  *
  * @author Usuario
  */
 public class Agregar_libros extends javax.swing.JFrame {
-
+    Metodos_libro metl = new Metodos_libro();
+    modelo.Libros lib= null;
     /**
      * Creates new form Agregar_libros
      */
     public Agregar_libros() {
         initComponents();
+        Modificar_libros libr = new Modificar_libros();
+        String nomb = libr.nombre;
+        
+        modelo.Libros libro = new Metodos_libro().Buscarlibro(nomb);
+        txt_ICBN.setText(String.valueOf(libro.getIcbn()));
+        txt_nombreAL.setText(libro.getNombre());
+        txt_numeroP.setText(String.valueOf(libro.getNum_pag()));
+        txt_edicion.setText(String.valueOf(libro.getEdicion()));
+        txt_fechaP.setText(String.valueOf(libro.getFecha()));
+        txt_nombreE.setText(libro.getNom_edt());
+        txt_autorID.setText(String.valueOf(libro.getAutor_id()));
+        
     }
 
     /**
@@ -64,7 +86,7 @@ public class Agregar_libros extends javax.swing.JFrame {
 
         jLabel8.setText("Autor ID:");
 
-        btn_agregarAL.setText("Agregar");
+        btn_agregarAL.setText("Actualizar");
         btn_agregarAL.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_agregarALActionPerformed(evt);
@@ -122,7 +144,7 @@ public class Agregar_libros extends javax.swing.JFrame {
                         .addComponent(btn_regresarAL)
                         .addGap(35, 35, 35)
                         .addComponent(btn_salirAL)))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_ICBN, txt_autorID, txt_edicion, txt_fechaP, txt_nombreAL, txt_nombreE, txt_numeroP});
@@ -176,14 +198,31 @@ this.dispose();
     }//GEN-LAST:event_btn_salirALActionPerformed
 
     private void btn_regresarALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarALActionPerformed
-Menu me=new Menu();
+  Menu me=new Menu();
   me.setVisible(true);
   this.setVisible(false);
 
     }//GEN-LAST:event_btn_regresarALActionPerformed
 
     private void btn_agregarALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarALActionPerformed
-        // TODO add your handling code here:
+        
+          if(!txt_nombreAL.getText().trim().equals("")
+                && JOptionPane.showConfirmDialog(this, "Seguro que desea guardar datos",
+                        "Ingreso Cliente", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+            
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            Date fechanac=null;
+            modelo.Libros cliente= new modelo.Libros(
+                    Integer.parseInt(txt_ICBN.getText()), 
+                    txt_nombreAL.getText(), 
+                    Integer.parseInt(txt_numeroP.getText()), 
+                    Integer.parseInt(txt_edicion.getText()),
+                    java.sql.Date.valueOf(txt_fechaP.getText()), 
+                    txt_nombreE.getText(), 
+                    Integer.parseInt(txt_autorID.getText()));
+            metl.Actualizarlibro(cliente);
+        }
+        
     }//GEN-LAST:event_btn_agregarALActionPerformed
 
 

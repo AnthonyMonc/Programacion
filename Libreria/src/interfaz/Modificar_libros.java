@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Usuario
  */
 public class Modificar_libros extends javax.swing.JFrame {
-    public String nombre;
+    public static String nombre;
     private DefaultTableModel dtm;
     Metodos_libro metl = new Metodos_libro();
     /**
@@ -166,16 +166,16 @@ this.dispose();
     }//GEN-LAST:event_btn_salirMLActionPerformed
 
     private void btn_actualizarMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarMLActionPerformed
-           int filaSeleccionada = tbl_lib.getSelectedRow();
+        int filaSeleccionada = tbl_lib.getSelectedRow();
         if (filaSeleccionada >= 0) {
-            DefaultTableModel modelo = (DefaultTableModel) tbl_lib.getModel();
-            nombre = (String) modelo.getValueAt(filaSeleccionada, 0);
-             //Modifica_Cliente mc = new Modifica_Cliente();
-             //mc.setVisible(true);
+             dtm = (DefaultTableModel) tbl_lib.getModel();
+             nombre = (String) dtm.getValueAt(filaSeleccionada, 1);
+             Agregar_libros mc = new Agregar_libros();
+             mc.setVisible(true);
+             this.dispose();
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione la fila a modificar");
-        }
-        
+        }        
     }//GEN-LAST:event_btn_actualizarMLActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

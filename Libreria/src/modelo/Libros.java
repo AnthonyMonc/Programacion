@@ -99,6 +99,16 @@ public class Libros {
         this.nom_edt = nom_edt;
         this.autor_id = autor_id;
     }
+
+    public Libros(int icbn, String nombre, int num_pag, int edicion, Date fecha, String nom_edt, int autor_id) {
+        this.icbn = icbn;
+        this.nombre = nombre;
+        this.num_pag = num_pag;
+        this.edicion = edicion;
+        this.fecha = fecha;
+        this.nom_edt = nom_edt;
+        this.autor_id = autor_id;
+    }
     
     
     
