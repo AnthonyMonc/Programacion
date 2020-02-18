@@ -10,9 +10,8 @@ import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 /**
  *
@@ -21,15 +20,20 @@ import java.util.GregorianCalendar;
 public class Agregar_libros extends javax.swing.JFrame {
     Metodos_libro metl = new Metodos_libro();
     modelo.Libros lib= null;
+    
     /**
      * Creates new form Agregar_libros
      */
     public Agregar_libros() {
         initComponents();
+        btn_ingresar.setVisible(false);
+        btn_agregarAL.setVisible(false);
         Modificar_libros libr = new Modificar_libros();
         String nomb = libr.nombre;
-        
-        modelo.Libros libro = new Metodos_libro().Buscarlibro(nomb);
+        boolean verf = libr.IoM;
+        if (verf==true){
+        btn_agregarAL.setVisible(true);
+                modelo.Libros libro = new Metodos_libro().Buscarlibro(nomb);
         txt_ICBN.setText(String.valueOf(libro.getIcbn()));
         txt_nombreAL.setText(libro.getNombre());
         txt_numeroP.setText(String.valueOf(libro.getNum_pag()));
@@ -38,6 +42,11 @@ public class Agregar_libros extends javax.swing.JFrame {
         txt_nombreE.setText(libro.getNom_edt());
         txt_autorID.setText(String.valueOf(libro.getAutor_id()));
         
+
+        }
+        if (verf==false){
+        btn_ingresar.setVisible(true);
+        }
     }
 
     /**
@@ -67,6 +76,7 @@ public class Agregar_libros extends javax.swing.JFrame {
         txt_fechaP = new javax.swing.JTextField();
         txt_nombreE = new javax.swing.JTextField();
         txt_autorID = new javax.swing.JTextField();
+        btn_ingresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -107,6 +117,13 @@ public class Agregar_libros extends javax.swing.JFrame {
             }
         });
 
+        btn_ingresar.setText("INGRESAR");
+        btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_ingresarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,36 +132,41 @@ public class Agregar_libros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_edicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fechaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_nombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_autorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_ICBN, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_nombreAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_numeroP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btn_agregarAL)
+                        .addGap(61, 61, 61)
+                        .addComponent(btn_ingresar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addComponent(btn_regresarAL))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(165, 165, 165)
-                        .addComponent(jLabel1))
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_salirAL))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jLabel8))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(btn_agregarAL)
-                        .addGap(38, 38, 38)
-                        .addComponent(btn_regresarAL)
-                        .addGap(35, 35, 35)
-                        .addComponent(btn_salirAL)))
-                .addContainerGap(71, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_edicion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_fechaP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_nombreE, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_autorID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_ICBN, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_nombreAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_numeroP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(25, 25, 25)
+                                .addComponent(jLabel8)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_ICBN, txt_autorID, txt_edicion, txt_fechaP, txt_nombreAL, txt_nombreE, txt_numeroP});
@@ -152,8 +174,11 @@ public class Agregar_libros extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addComponent(btn_salirAL))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -186,7 +211,7 @@ public class Agregar_libros extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_agregarAL)
                     .addComponent(btn_regresarAL)
-                    .addComponent(btn_salirAL))
+                    .addComponent(btn_ingresar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -198,9 +223,9 @@ this.dispose();
     }//GEN-LAST:event_btn_salirALActionPerformed
 
     private void btn_regresarALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarALActionPerformed
-  Menu me=new Menu();
-  me.setVisible(true);
-  this.setVisible(false);
+    Menu me=new Menu();
+    me.setVisible(true);
+    this.setVisible(false);
 
     }//GEN-LAST:event_btn_regresarALActionPerformed
 
@@ -225,9 +250,22 @@ this.dispose();
         
     }//GEN-LAST:event_btn_agregarALActionPerformed
 
+    private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+        modelo.Libros nuevolibro = new modelo.Libros();
+        nuevolibro.setIcbn(Integer.parseInt(txt_ICBN.getText()));
+        nuevolibro.setNombre(txt_nombreAL.getText());
+        nuevolibro.setNum_pag(Integer.parseInt(txt_numeroP.getText()));
+        nuevolibro.setEdicion(Integer.parseInt(txt_edicion.getText()));
+        nuevolibro.setFecha(java.sql.Date.valueOf(txt_fechaP.getText()));
+        nuevolibro.setNom_edt(txt_nombreE.getText());
+        nuevolibro.setAutor_id(Integer.parseInt(txt_autorID.getText()));
+        metl.ingresarArticulo(nuevolibro);
+    }//GEN-LAST:event_btn_ingresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_agregarAL;
+    private javax.swing.JButton btn_ingresar;
     private javax.swing.JButton btn_regresarAL;
     private javax.swing.JButton btn_salirAL;
     private javax.swing.JLabel jLabel1;

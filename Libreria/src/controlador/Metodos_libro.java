@@ -103,4 +103,28 @@ public class Metodos_libro {
             } catch (SQLException ex) {
              //   Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
             }}
+
+    public void ingresarArticulo(Libros lib){
+        
+        String sqlInsert = 
+                "INSERT into LIBROS  (ICBN , NOMBRE , NUM_PAG ,  EDICION , FEC_PUBLIC , NOM_EDITORIAL , AUTORID ) values (?,?,?,?,?,?,?);";
+        try {
+            ps = conexion.getConxion().prepareStatement(sqlInsert);
+            ps.setInt(1, lib.getIcbn());
+            ps.setString(2, lib.getNombre());
+            ps.setInt(3, lib.getNum_pag());
+            ps.setInt(4, lib.getEdicion());
+            ps.setDate(5, lib.getFecha());
+            ps.setString(6, lib.getNom_edt());
+            ps.setInt(7, lib.getAutor_id());
+            ps.executeUpdate();            
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+        } catch (SQLException ex) {
+            System.out.println("ERROR"+ ex);
+                  JOptionPane.showMessageDialog(null, "ERROR");
+        }
+    }
+    
+
 }
+
