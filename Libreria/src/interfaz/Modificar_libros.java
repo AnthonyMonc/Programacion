@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import modelo.Libros;
 
 /**
  *
@@ -20,6 +21,7 @@ public class Modificar_libros extends javax.swing.JFrame {
     public static boolean IoM;
     private DefaultTableModel dtm;
     Metodos_libro metl = new Metodos_libro();
+    List<modelo.Libros> libro = null;
     /**
      * Creates new form Modificar_libros
      */
@@ -41,7 +43,6 @@ public class Modificar_libros extends javax.swing.JFrame {
             dtm.addRow(fila);
         }
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -90,6 +91,11 @@ public class Modificar_libros extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tbl_lib);
 
         btn_eliminarML.setText("Eliminar");
+        btn_eliminarML.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarMLActionPerformed(evt);
+            }
+        });
 
         btn_actualizarML.setText("Actualizar");
         btn_actualizarML.addActionListener(new java.awt.event.ActionListener() {
@@ -197,12 +203,45 @@ this.dispose();
     }//GEN-LAST:event_btn_actualizarMLActionPerformed
 
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
-        IoM=false;
+            IoM=false;
              Agregar_libros mc = new Agregar_libros();
              mc.setVisible(true);
              this.dispose();
     }//GEN-LAST:event_btn_ingresarActionPerformed
 
+    private void btn_eliminarMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarMLActionPerformed
+        
+        int filaSeleccionada = tbl_lib.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+             dtm = (DefaultTableModel) tbl_lib.getModel();
+             nombre = (String) dtm.getValueAt(filaSeleccionada, 1);
+             if(!nombre.trim().equals("")
+                && JOptionPane.showConfirmDialog(this, "Seguro que desea Eliminar",
+                        "Ingreso Cliente", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+             metl.eliminarRegistro(nombre);
+             eliminar();
+             libro = metl.ListarLibro();
+             cargarTabla(libro);
+        }
+        
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione elemento a eliminar");
+        }
+        
+    }//GEN-LAST:event_btn_eliminarMLActionPerformed
+
+    public void eliminar(){ 
+     try{
+        DefaultTableModel dtm = (DefaultTableModel) tbl_lib.getModel();
+        int a = tbl_lib.getRowCount()-1;
+        for (int i = a; i >= 0; i--) {           
+        dtm.removeRow(dtm.getRowCount()-1);
+        } 
+     }catch(Exception ex){
+         System.out.println("Error al limpiar tabla");
+     }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizarML;
     private javax.swing.JButton btn_eliminarML;
@@ -213,4 +252,21 @@ this.dispose();
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_lib;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla(List<Libros> libro) {
+       dtm = (DefaultTableModel) tbl_lib.getModel();
+        
+        for (modelo.Libros li: libro) {
+           Vector fila = new Vector();
+//            fila.add(au.getId_autor());
+            fila.add(li.getIcbn());
+            fila.add(li.getNombre());
+            fila.add(li.getNum_pag());
+            fila.add(li.getEdicion());
+            fila.add(li.getFecha());
+            fila.add(li.getNom_edt());
+            fila.add(li.getAutor_id());
+            dtm.addRow(fila);
+        }
+    }
 }

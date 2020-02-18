@@ -125,6 +125,17 @@ public class Metodos_libro {
         }
     }
     
+    public void eliminarRegistro(String lib) {
+        String delete = "delete from LIBROS where NOMBRE = ?";
 
+        try {
+            ps = conexion.getConxion().prepareStatement(delete);
+            ps.setString(1, lib);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos Eliminados correctamente");
+        } catch (SQLException ex) {
+            //Logger.getLogger(controladorArticulo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
 
