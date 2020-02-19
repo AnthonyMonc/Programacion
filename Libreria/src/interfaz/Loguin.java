@@ -152,22 +152,34 @@ public class Loguin extends javax.swing.JFrame{
         perfil = met.Perfiles(txt_usuario.getText(), new String(psw_contr.getPassword()));
 
         if (perfil != null && perfil.getPermiso() == 'c') { //cliente
-            dispose();
+            
             System.out.println(txt_usuario.getText() + " " + psw_contr.getPassword());
-            principal.getJ_administrador().setEnabled(false);
-            principal.getJ_cliente().setEnabled(true);
+            men.getJ_administrador().setEnabled(false);
+            men.getJ_cliente().setEnabled(true);
+            men.getJ_libros().setEnabled(true);
+            men.getJ_autor().setEnabled(true);
+            men.getJ_Mautores().setEnabled(false);
+            men.getJ_Mlibros().setEnabled(false);
+//            dispose();
             men.setVisible(true);
+            
             JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (perfil != null && perfil.getPermiso() == 'a') { //administrador
-            dispose();
-            principal.getJ_administrador().setEnabled(true);
-            principal.getJ_cliente().setEnabled(false);
+            
+            men.getJ_administrador().setEnabled(true);
+            men.getJ_cliente().setEnabled(false);
+            men.getJ_libros().setEnabled(false);
+            men.getJ_autor().setEnabled(false);
+            men.getJ_Mautores().setEnabled(true);
+            men.getJ_Mlibros().setEnabled(true);
+  //          dispose();
             men.setVisible(true);
+            
             JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
 
         } else { //autenticacion fallida
-            dispose();
+            //dispose();
             principal.getJ_administrador().setEnabled(false);
             principal.getJ_cliente().setEnabled(false);
             men.setVisible(true);

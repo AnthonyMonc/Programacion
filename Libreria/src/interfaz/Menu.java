@@ -33,6 +33,8 @@ public class Menu extends javax.swing.JFrame {
         j_loguin.setEnabled(true);
         j_cliente.setEnabled(false);
         j_administrador.setEnabled(false);
+        Loguin l = new Loguin(this);
+        
     }
 
     public JMenu getJ_administrador() {
@@ -49,6 +51,38 @@ public class Menu extends javax.swing.JFrame {
 
     public void setJ_cliente(JMenu j_cliente) {
         this.j_cliente = j_cliente;
+    }
+
+    public JMenuItem getJ_Mautores() {
+        return j_Mautores;
+    }
+
+    public void setJ_Mautores(JMenuItem j_Mautores) {
+        this.j_Mautores = j_Mautores;
+    }
+
+    public JMenuItem getJ_Mlibros() {
+        return j_Mlibros;
+    }
+
+    public void setJ_Mlibros(JMenuItem j_Mlibros) {
+        this.j_Mlibros = j_Mlibros;
+    }
+
+    public JMenuItem getJ_autor() {
+        return j_autor;
+    }
+
+    public void setJ_autor(JMenuItem j_autor) {
+        this.j_autor = j_autor;
+    }
+
+    public JMenuItem getJ_libros() {
+        return j_libros;
+    }
+
+    public void setJ_libros(JMenuItem j_libros) {
+        this.j_libros = j_libros;
     }
     
   

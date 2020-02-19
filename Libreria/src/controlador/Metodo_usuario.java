@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Usuario;
 
 
@@ -54,5 +55,26 @@ public class Metodo_usuario {
         }           
         return perfil;
     }
-
+    
+    /*public void ingresarArticulo(Usuario usu){
+        
+        String sqlInsert = 
+                "INSERT INTO PERFIL (usuario,clave,permiso,nombre) VALUES (?,?,?,?);";
+        try {
+            ps = conexion.getConxion().prepareStatement(sqlInsert);
+            ps.setInt(1, lib.getIcbn());
+            ps.setString(2, lib.getNombre());
+            ps.setInt(3, lib.getNum_pag());
+            ps.setInt(4, lib.getEdicion());
+            ps.setDate(5, lib.getFecha());
+            ps.setString(6, lib.getNom_edt());
+            ps.setInt(7, lib.getAutor_id());
+            ps.executeUpdate();            
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+        } catch (SQLException ex) {
+            System.out.println("ERROR"+ ex);
+                  JOptionPane.showMessageDialog(null, "ERROR");
+        }
+    }
+*/
 }
