@@ -5,17 +5,49 @@
  */
 package interfaz;
 
+import controlador.Metodos_autores;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.sql.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import modelo.autores;
+
 /**
  *
  * @author Usuario
  */
 public class Agregar_autores extends javax.swing.JFrame {
 
+     FondoPanel fondo =new FondoPanel();
+     Metodos_autores meta = new Metodos_autores();
+   
     /**
      * Creates new form Agregar_autores
      */
     public Agregar_autores() {
+         this.setContentPane(fondo);        
         initComponents();
+        Modificar_autores aut = new Modificar_autores();
+        btn_actualizar.setVisible(false);
+        btn_agregar.setVisible(false);
+        String nomb = aut.nombre;
+        boolean verf = aut.IoM;
+        if (verf==true){
+        btn_actualizar.setVisible(true);
+        autores autor = new Metodos_autores().Buscarautor(nomb);
+        txt_nombre.setText(autor.getNombre());
+        txt_apellido.setText(autor.getApellido());
+        txt_fechaN.setText(String.valueOf(autor.getFecha()));
+        txt_numeroL.setText(String.valueOf(autor.getNum_libros()));
+        txt_ecuatoriano.setText(String.valueOf(autor.isEcuatoriano()));
+        }
+        
+        if (verf==false){
+        btn_agregar.setVisible(true);
+        }
+        
     }
 
     /**
@@ -28,7 +60,7 @@ public class Agregar_autores extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btn_agregarAA = new javax.swing.JButton();
+        btn_actualizar = new javax.swing.JButton();
         btn_regresarAA = new javax.swing.JButton();
         tbl_salirAA = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -41,12 +73,18 @@ public class Agregar_autores extends javax.swing.JFrame {
         txt_fechaN = new javax.swing.JTextField();
         txt_numeroL = new javax.swing.JTextField();
         txt_ecuatoriano = new javax.swing.JTextField();
+        btn_agregar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Agregar autores");
 
-        btn_agregarAA.setText("Agregar");
+        btn_actualizar.setText("ACTUALIZAR");
+        btn_actualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarActionPerformed(evt);
+            }
+        });
 
         btn_regresarAA.setText("Regresar");
         btn_regresarAA.addActionListener(new java.awt.event.ActionListener() {
@@ -78,39 +116,49 @@ public class Agregar_autores extends javax.swing.JFrame {
             }
         });
 
+        btn_agregar.setText("AGREGAR");
+        btn_agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_agregarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(54, 54, 54)
-                .addComponent(btn_agregarAA)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_regresarAA)
-                .addGap(70, 70, 70))
-            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
-                        .addGap(25, 25, 25)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txt_numeroL, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_ecuatoriano, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_fechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(145, 145, 145)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tbl_salirAA))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(163, 163, 163)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(tbl_salirAA))))
-                .addContainerGap(115, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btn_actualizar)
+                                .addGap(45, 45, 45)
+                                .addComponent(btn_agregar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                                .addComponent(btn_regresarAA))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6))
+                                .addGap(25, 25, 25)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txt_numeroL, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_ecuatoriano, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txt_fechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addContainerGap())))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_apellido, txt_ecuatoriano, txt_fechaN, txt_nombre, txt_numeroL});
@@ -118,9 +166,11 @@ public class Agregar_autores extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addGap(17, 17, 17)
+                .addGap(11, 11, 11)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(tbl_salirAA))
+                .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -140,13 +190,14 @@ public class Agregar_autores extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txt_ecuatoriano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(10, 10, 10)
+                .addGap(30, 96, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btn_actualizar)
                     .addComponent(btn_regresarAA)
-                    .addComponent(btn_agregarAA))
-                .addGap(18, 18, 18)
-                .addComponent(tbl_salirAA)
-                .addContainerGap(22, Short.MAX_VALUE))
+                    .addComponent(btn_agregar))
+                .addContainerGap())
         );
 
         pack();
@@ -157,19 +208,44 @@ public class Agregar_autores extends javax.swing.JFrame {
     }//GEN-LAST:event_txt_nombreActionPerformed
 
     private void btn_regresarAAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarAAActionPerformed
-        Menu me=new Menu();
-  me.setVisible(true);
-  this.setVisible(false);
+    Modificar_autores me=new  Modificar_autores();
+    me.setVisible(true);
+    this.setVisible(false);
 
     }//GEN-LAST:event_btn_regresarAAActionPerformed
 
     private void tbl_salirAAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tbl_salirAAActionPerformed
-this.dispose();
+    this.dispose();
     }//GEN-LAST:event_tbl_salirAAActionPerformed
+
+    private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        if(!txt_nombre.getText().trim().equals("")
+                && JOptionPane.showConfirmDialog(this, "Seguro que desea actualizar datos",
+                        "Ingreso Cliente", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
+            autores autor= new autores(
+                    txt_nombre.getText(),
+                    txt_apellido.getText(),
+                    Date.valueOf(txt_fechaN.getText()),
+                    Integer.parseInt(txt_numeroL.getText()),
+                    Boolean.getBoolean(txt_ecuatoriano.getText()));
+                    meta.Actualizarlibro(autor);
+        }
+    }//GEN-LAST:event_btn_actualizarActionPerformed
+
+    private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+        autores autor = new autores();
+        autor.setNombre(txt_nombre.getText());
+        autor.setApellido(txt_apellido.getText());
+        autor.setFecha(Date.valueOf(txt_fechaN.getText()));
+        autor.setNum_libros(Integer.parseInt(txt_numeroL.getText()));
+        autor.setEcuatoriano(Boolean.getBoolean(txt_ecuatoriano.getText()));
+        meta.ingresarArticulo(autor);
+    }//GEN-LAST:event_btn_agregarActionPerformed
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_agregarAA;
+    private javax.swing.JButton btn_actualizar;
+    private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_regresarAA;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -184,4 +260,24 @@ this.dispose();
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_numeroL;
     // End of variables declaration//GEN-END:variables
+
+
+    class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/3.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+    
 }

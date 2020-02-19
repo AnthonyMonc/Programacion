@@ -81,5 +81,14 @@ public class autores {
         this.ecuatoriano = ecuatoriano;
     }
 
+    public autores(String nombre, String apellido, Date fecha, int num_libros, boolean ecuatoriano) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.fecha = fecha;
+        this.num_libros = num_libros;
+        this.ecuatoriano = ecuatoriano;
+    }
+    
+
     
 }

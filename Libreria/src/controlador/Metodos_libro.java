@@ -28,7 +28,7 @@ public class Metodos_libro {
     ConexionBDD conexion = new ConexionBDD();
     
     
-    public List<Libros> ListarLibro() {
+public List<Libros> ListarLibro() {
         List<Libros> listalibro = new ArrayList<Libros>();
         Libros libro= null;
         String sqllibro = "SELECT * FROM LIBROS l";
@@ -54,7 +54,7 @@ public class Metodos_libro {
        return listalibro; 
     }
     
-    public Libros Buscarlibro(String lib){ 
+public Libros Buscarlibro(String lib){ 
         Libros libro=null;
         String sqlCliente ="SELECT * FROM LIBROS WHERE NOMBRE like ?"
                 + " or NOM_EDITORIAL like ? ";
@@ -82,7 +82,7 @@ public class Metodos_libro {
             return libro;
     }
     
-    public void Actualizarlibro(Libros lib) {
+public void Actualizarlibro(Libros lib) {
 
         String sqlCliente = "UPDATE LIBROS SET ICBN=?, NOMBRE=?, NUM_PAG=?, EDICION=?, FEC_PUBLIC=?, NOM_EDITORIAL=?, AUTORID=? WHERE NOMBRE=? ";
         PreparedStatement ps =null;
@@ -104,7 +104,7 @@ public class Metodos_libro {
              //   Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
             }}
 
-    public void ingresarArticulo(Libros lib){
+public void ingresarArticulo(Libros lib){
         
         String sqlInsert = 
                 "INSERT into LIBROS  (ICBN , NOMBRE , NUM_PAG ,  EDICION , FEC_PUBLIC , NOM_EDITORIAL , AUTORID ) values (?,?,?,?,?,?,?);";
@@ -125,7 +125,7 @@ public class Metodos_libro {
         }
     }
     
-    public void eliminarRegistro(String lib) {
+public void eliminarRegistro(String lib) {
         String delete = "delete from LIBROS where NOMBRE = ?";
 
         try {

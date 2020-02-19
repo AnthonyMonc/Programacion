@@ -6,8 +6,13 @@
 package interfaz;
 
 import controlador.Metodos_autores;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.autores;
 
@@ -16,16 +21,22 @@ import modelo.autores;
  * @author Usuario
  */
 public class Modificar_autores extends javax.swing.JFrame {
+
+FondoPanel fondo =new FondoPanel();
 private DefaultTableModel dtm;
-Metodos_autores met = new Metodos_autores();
+Metodos_autores met = new Metodos_autores();   
+public static String nombre;
+public static boolean IoM;
+List<autores> aut = null;
+ 
     /**
      * Creates new form Modificar_autores
      */
     public Modificar_autores() {
-        initComponents();
-        List<autores> autor = met.ListarAutor();
-        dtm = (DefaultTableModel) tbl_aut.getModel();
-        
+        this.setContentPane(fondo);
+initComponents();
+         List<autores> autor = met.ListarAutor();
+        dtm = (DefaultTableModel) tbl_aut.getModel();        
         for (autores au: autor) {
            Vector fila = new Vector();
 //            fila.add(au.getId_autor());
@@ -33,13 +44,10 @@ Metodos_autores met = new Metodos_autores();
             fila.add(au.getApellido());
             fila.add(au.getFecha());
             fila.add(au.getNum_libros());
-            if (au.isEcuatoriano()==true){
-            fila.add("Si es");
-            }else {
-            fila.add("No lo es");
-            }
+            fila.add(au.isEcuatoriano());
             dtm.addRow(fila);
         }
+        
     }
 
     /**
@@ -58,6 +66,7 @@ Metodos_autores met = new Metodos_autores();
         btn_regresarMA = new javax.swing.JButton();
         btn_actualizarMA = new javax.swing.JButton();
         btn_salir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -98,6 +107,11 @@ Metodos_autores met = new Metodos_autores();
         });
 
         btn_actualizarMA.setText("Actualizar");
+        btn_actualizarMA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_actualizarMAActionPerformed(evt);
+            }
+        });
 
         btn_salir.setText("SALIR");
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
@@ -106,46 +120,58 @@ Metodos_autores met = new Metodos_autores();
             }
         });
 
+        jButton1.setText("INGRESAR");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(146, 146, 146)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addGap(146, 146, 146)
+                .addComponent(jLabel1)
+                .addContainerGap(272, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_actualizarMA)
-                    .addComponent(btn_eliminarMA))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_actualizarMA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btn_eliminarMA)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(81, 81, 81)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_regresarMA)
                     .addComponent(btn_salir))
                 .addGap(68, 68, 68))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_eliminarMA)
-                    .addComponent(btn_regresarMA))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 196, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btn_eliminarMA)
+                            .addComponent(btn_regresarMA))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(1, 1, 1)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_actualizarMA)
                     .addComponent(btn_salir))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -162,14 +188,50 @@ Menu me=new Menu();
 this.dispose();
     }//GEN-LAST:event_btn_salirActionPerformed
 
+    private void btn_actualizarMAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarMAActionPerformed
+        int filaSeleccionada = tbl_aut.getSelectedRow();
+        if (filaSeleccionada >= 0) {
+             dtm = (DefaultTableModel) tbl_aut.getModel();
+             nombre = (String) dtm.getValueAt(filaSeleccionada, 1);
+             IoM=true;
+             Agregar_autores mc = new Agregar_autores();
+             mc.setVisible(true);
+             this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione la fila a modificar");
+        }                                                       
+    }//GEN-LAST:event_btn_actualizarMAActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizarMA;
     private javax.swing.JButton btn_eliminarMA;
     private javax.swing.JButton btn_regresarMA;
     private javax.swing.JButton btn_salir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbl_aut;
     // End of variables declaration//GEN-END:variables
+
+
+    class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/3.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+    
+
 }

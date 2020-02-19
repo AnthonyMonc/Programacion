@@ -6,10 +6,14 @@
 package interfaz;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JInternalFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,10 +21,13 @@ import javax.swing.JMenuItem;
  */
 public class Menu extends javax.swing.JFrame {
 
+    FondoPanel fondo =new FondoPanel();
     /** 
      * Creates new form Menu
      */
     public Menu() {
+        
+        this.setContentPane(fondo);
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         j_loguin.setEnabled(true);
@@ -59,7 +66,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
-        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         j_loguin = new javax.swing.JMenuItem();
@@ -79,17 +85,6 @@ public class Menu extends javax.swing.JFrame {
         jMenuBar2.add(jMenu5);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 509, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 349, Short.MAX_VALUE)
-        );
 
         jMenu1.setText("Menu ");
 
@@ -159,15 +154,11 @@ public class Menu extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 509, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addGap(0, 349, Short.MAX_VALUE)
         );
 
         pack();
@@ -175,7 +166,9 @@ public class Menu extends javax.swing.JFrame {
 
     private void j_loguinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_loguinActionPerformed
         Loguin log = new Loguin(this);
-        showJInternalFrameCenterPosition(log);    
+        log.setVisible(true);
+        this.setVisible(false);
+          
     }//GEN-LAST:event_j_loguinActionPerformed
 
     private void j_autorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_autorActionPerformed
@@ -216,16 +209,6 @@ public class Menu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_j_autorMouseClicked
 
-      private void showJInternalFrameCenterPosition(JInternalFrame jInternalFrame) {
-        jPanel1.add(jInternalFrame);
-        Dimension componentDim = jInternalFrame.getSize();
-        Dimension desktopDim = jPanel1.getSize();
-        int width = (int) (desktopDim.getWidth() - componentDim.getWidth()) / 2;
-        int heigth = (int) (desktopDim.getHeight() - componentDim.getHeight()) / 2;
-        Dimension positionDim = new Dimension(width, heigth);
-        jInternalFrame.setBounds((int) positionDim.getWidth(), (int) positionDim.getHeight(), jInternalFrame.getWidth(), jInternalFrame.getHeight());
-        jInternalFrame.setVisible(true);
-    }
     /**
      * @param args the command line arguments
      */
@@ -268,7 +251,6 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem j_Mautores;
     private javax.swing.JMenuItem j_Mlibros;
     private javax.swing.JMenu j_administrador;
@@ -279,4 +261,22 @@ public class Menu extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
 
+    class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/libro.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+    
 }

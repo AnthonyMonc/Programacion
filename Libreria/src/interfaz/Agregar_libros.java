@@ -6,11 +6,15 @@
 package interfaz;
 
 import controlador.Metodos_libro;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 
 
 /**
@@ -18,6 +22,8 @@ import java.util.Date;
  * @author Usuario
  */
 public class Agregar_libros extends javax.swing.JFrame {
+
+    FondoPanel fondo =new FondoPanel();
     Metodos_libro metl = new Metodos_libro();
     modelo.Libros lib= null;
     
@@ -25,6 +31,11 @@ public class Agregar_libros extends javax.swing.JFrame {
      * Creates new form Agregar_libros
      */
     public Agregar_libros() {
+
+      this.setContentPane(fondo);
+  
+
+
         initComponents();
         btn_ingresar.setVisible(false);
         btn_agregarAL.setVisible(false);
@@ -33,7 +44,7 @@ public class Agregar_libros extends javax.swing.JFrame {
         boolean verf = libr.IoM;
         if (verf==true){
         btn_agregarAL.setVisible(true);
-                modelo.Libros libro = new Metodos_libro().Buscarlibro(nomb);
+        modelo.Libros libro = new Metodos_libro().Buscarlibro(nomb);
         txt_ICBN.setText(String.valueOf(libro.getIcbn()));
         txt_nombreAL.setText(libro.getNombre());
         txt_numeroP.setText(String.valueOf(libro.getNum_pag()));
@@ -223,7 +234,7 @@ this.dispose();
     }//GEN-LAST:event_btn_salirALActionPerformed
 
     private void btn_regresarALActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarALActionPerformed
-    Menu me=new Menu();
+    Modificar_libros me=new Modificar_libros();
     me.setVisible(true);
     this.setVisible(false);
 
@@ -284,4 +295,28 @@ this.dispose();
     private javax.swing.JTextField txt_nombreE;
     private javax.swing.JTextField txt_numeroP;
     // End of variables declaration//GEN-END:variables
+
+
+
+    class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/3.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+  
+
+
+
 }

@@ -6,9 +6,13 @@
 package interfaz;
 
 import controlador.Metodos_libro;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Libros;
 
@@ -17,6 +21,9 @@ import modelo.Libros;
  * @author Usuario
  */
 public class Modificar_libros extends javax.swing.JFrame {
+    
+     FondoPanel fondo =new FondoPanel();
+    
     public static String nombre;
     public static boolean IoM;
     private DefaultTableModel dtm;
@@ -26,6 +33,9 @@ public class Modificar_libros extends javax.swing.JFrame {
      * Creates new form Modificar_libros
      */
     public Modificar_libros() {
+        
+        this.setContentPane(fondo);
+        
         initComponents();
         List<modelo.Libros> libro = metl.ListarLibro();
         dtm = (DefaultTableModel) tbl_lib.getModel();
@@ -269,4 +279,24 @@ this.dispose();
             dtm.addRow(fila);
         }
     }
+    
+    
+    class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/3.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+    
 }

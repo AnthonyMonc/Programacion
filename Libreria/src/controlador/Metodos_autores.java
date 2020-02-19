@@ -15,6 +15,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.autores;
 
 /**
@@ -30,7 +31,7 @@ public class Metodos_autores {
     public List<autores> ListarAutor() {
         List<autores> listaautores = new ArrayList<autores>();
         autores autor= null;
-        String sqlautor = "SELECT * FROM AUTORES a";
+        String sqlautor = "SELECT * FROM AUTORES ";
         Statement stautor = null;
         
         try {
@@ -78,4 +79,54 @@ public class Metodos_autores {
             return autor;
     }
    
+        public void Actualizarlibro(autores aut) {
+
+        String sqlCliente = "UPDATE LIBROS SET NOMBRES=?, APELLIDO=?, FEC_NAC=?, NUM_LIBROS=?, ECUATORIANO=? WHERE NOMBRES=? ";
+        PreparedStatement ps =null;
+            try {
+                ps= conexion.getConxion().prepareStatement(sqlCliente);
+                ps.setString(1, aut.getNombre());
+                ps.setString(2, aut.getApellido());
+                ps.setDate(3, aut.getFecha());
+                ps.setInt(4, aut.getNum_libros());
+                ps.setBoolean(5, aut.isEcuatoriano());
+                ps.setString(6, aut.getNombre());
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Datos Actualizados");
+                
+            } catch (SQLException ex) {
+             //   Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
+            }}
+
+    public void ingresarArticulo(autores aut){
+        
+        String sqlInsert = 
+                "INSERT into AUTORES (NOMBRES , APELLIDO, FEC_NAC , NUM_LIBROS , ECUATORIANO) values (?,?,?,?,?);";
+        try {
+            ps = conexion.getConxion().prepareStatement(sqlInsert);
+            ps.setString(1, aut.getNombre());
+            ps.setString(2, aut.getApellido());
+            ps.setDate(3, aut.getFecha());
+            ps.setInt(4, aut.getNum_libros());
+            ps.setBoolean(5, aut.isEcuatoriano());
+            ps.executeUpdate();            
+            JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
+        } catch (SQLException ex) {
+            System.out.println("ERROR"+ ex);
+                  JOptionPane.showMessageDialog(null, "ERROR");
+        }
+    }
+    
+    public void eliminarRegistro(String aut) {
+        String delete = "delete from LIBROS where NOMBRE = ?";
+
+        try {
+            ps = conexion.getConxion().prepareStatement(delete);
+            ps.setString(1, aut);
+            ps.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Datos Eliminados correctamente");
+        } catch (SQLException ex) {
+            //Logger.getLogger(controladorArticulo.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }

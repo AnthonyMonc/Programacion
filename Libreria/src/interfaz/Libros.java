@@ -6,8 +6,12 @@
 package interfaz;
 
 import controlador.Metodos_libro;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -18,6 +22,9 @@ import javax.swing.table.DefaultTableModel;
  * @author antho
  */
 public class Libros extends javax.swing.JFrame {
+
+     FondoPanel fondo =new FondoPanel();
+
     private DefaultTableModel dtm;
     Metodos_libro metl = new Metodos_libro();
 
@@ -25,6 +32,12 @@ public class Libros extends javax.swing.JFrame {
      * Creates new form Libros
      */
     public Libros() {
+        
+        
+               this.setContentPane(fondo);
+  
+        
+        
         initComponents();
         List<modelo.Libros> libro = metl.ListarLibro();
         dtm = (DefaultTableModel) tbl_libros.getModel();
@@ -205,4 +218,24 @@ Menu me=new Menu();
     private javax.swing.JTable tbl_libros;
     private javax.swing.JTextField txt_busq;
     // End of variables declaration//GEN-END:variables
+
+class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/3.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+  
+
 }

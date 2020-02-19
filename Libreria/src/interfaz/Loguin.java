@@ -9,19 +9,29 @@ package interfaz;
 
 
 import controlador.Metodo_usuario;
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelo.Usuario;
 
 /**
  *
  * @author Usuario
  */
-public class Loguin extends javax.swing.JInternalFrame{
+public class Loguin extends javax.swing.JFrame{
+        FondoPanel fondo =new FondoPanel();
+    
+    
     Usuario usua = new Usuario();
     Metodo_usuario met = new Metodo_usuario();
     private Menu principal;
     /** Creates new form Loguin */
     public Loguin(Menu p) {
+        
+        this.setContentPane(fondo);
+        
         initComponents();
         principal = p;
         setTitle("Ingreso al Sistema");
@@ -171,4 +181,22 @@ public class Loguin extends javax.swing.JInternalFrame{
     // End of variables declaration//GEN-END:variables
 
 
+    class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/2.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+    
 }

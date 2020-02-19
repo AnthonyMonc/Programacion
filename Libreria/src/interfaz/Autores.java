@@ -6,8 +6,12 @@
 package interfaz;
 
 import controlador.Metodos_autores;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.List;
 import java.util.Vector;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import modelo.autores;
 
@@ -16,12 +20,18 @@ import modelo.autores;
  * @author antho
  */
 public class Autores extends javax.swing.JFrame {
-private DefaultTableModel dtm;
+
+    FondoPanel fondo =new FondoPanel();
+    
+    private DefaultTableModel dtm;
 Metodos_autores met = new Metodos_autores();
     /**
      * Creates new form Autores
      */
     public Autores() {
+    
+          this.setContentPane(fondo);
+  
         
         initComponents();
         List<autores> autor = met.ListarAutor();
@@ -212,4 +222,25 @@ Metodos_autores met = new Metodos_autores();
     private javax.swing.JTable tbl_autoresU;
     private javax.swing.JTextField txt_busq;
     // End of variables declaration//GEN-END:variables
+
+class FondoPanel extends JPanel{
+        private Image imagen ;
+        
+        
+        @Override
+        public void paint(Graphics g){
+            
+            imagen = new ImageIcon(getClass().getResource("/imagenes/3.jpg")).getImage();
+            
+            g.drawImage(imagen, 0, 0,getWidth(), getHeight(), this );
+            
+            setOpaque(false);
+            
+            super.paint(g);
+        }
+    }
+    
+  
+
+
 }
