@@ -31,8 +31,8 @@ public class Menu extends javax.swing.JFrame {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
         j_loguin.setEnabled(true);
-        j_cliente.setEnabled(true);
-        j_administrador.setEnabled(true);
+        j_cliente.setEnabled(false);
+        j_administrador.setEnabled(false);
     }
 
     public JMenu getJ_administrador() {

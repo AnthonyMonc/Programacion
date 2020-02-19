@@ -147,24 +147,30 @@ public class Loguin extends javax.swing.JFrame{
     private void autenticar() {
         
         Usuario perfil;
-        
+        Menu men = new Menu();
         System.out.println(txt_usuario.getText() + " " + psw_contr.getPassword());
         perfil = met.Perfiles(txt_usuario.getText(), new String(psw_contr.getPassword()));
 
         if (perfil != null && perfil.getPermiso() == 'c') { //cliente
+            dispose();
             System.out.println(txt_usuario.getText() + " " + psw_contr.getPassword());
-            principal.getJ_administrador().setEnabled(true);
+            principal.getJ_administrador().setEnabled(false);
             principal.getJ_cliente().setEnabled(true);
+            men.setVisible(true);
             JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
 
         } else if (perfil != null && perfil.getPermiso() == 'a') { //administrador
+            dispose();
             principal.getJ_administrador().setEnabled(true);
-            principal.getJ_cliente().setEnabled(true);
+            principal.getJ_cliente().setEnabled(false);
+            men.setVisible(true);
             JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
 
         } else { //autenticacion fallida
+            dispose();
             principal.getJ_administrador().setEnabled(false);
             principal.getJ_cliente().setEnabled(false);
+            men.setVisible(true);
             JOptionPane.showMessageDialog(this, "Credenciales invalidas", "FAIL", JOptionPane.ERROR_MESSAGE);
         }
         dispose();
