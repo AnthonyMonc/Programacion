@@ -15,7 +15,7 @@ public class Usuario {
     private String nombre2;
     private char permiso;
     private String nomperm;
-    private String idperfil;
+    private int idperfil;
     private String clave;
 
     
@@ -52,11 +52,11 @@ public class Usuario {
         this.nomperm = nomperm;
     }
 
-    public String getIdperfil() {
+    public int getIdperfil() {
         return idperfil;
     }
 
-    public void setIdperfil(String idperfil) {
+    public void setIdperfil(int idperfil) {
         this.idperfil = idperfil;
     }
 
@@ -71,7 +71,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String usuario, String nombre2, char permiso, String nomperm, String idperfil, String clave) {
+    public Usuario(String usuario, String nombre2, char permiso, String nomperm, int idperfil, String clave) {
         this.usuario = usuario;
         this.nombre2 = nombre2;
         this.permiso = permiso;
@@ -88,14 +88,10 @@ public class Usuario {
 
     
 
-    public Usuario(String usuario, String nombre2, char permiso, String idperfil, String clave) {
+    public Usuario(String usuario, String nombre2, char permiso, String clave) {
         this.usuario = usuario;
         this.nombre2 = nombre2;
         this.permiso = permiso;
-        this.idperfil = idperfil;
         this.clave = clave;
     }
-    
-    
-    
 }

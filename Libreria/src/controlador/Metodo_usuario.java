@@ -56,19 +56,18 @@ public class Metodo_usuario {
         return perfil;
     }
     
-    /*public void ingresarArticulo(Usuario usu){
+public void ingresarArticulo(Usuario usu){
         
         String sqlInsert = 
                 "INSERT INTO PERFIL (usuario,clave,permiso,nombre) VALUES (?,?,?,?);";
+        char per = 'c';
+        per = usu.getPermiso();
         try {
             ps = conexion.getConxion().prepareStatement(sqlInsert);
-            ps.setInt(1, lib.getIcbn());
-            ps.setString(2, lib.getNombre());
-            ps.setInt(3, lib.getNum_pag());
-            ps.setInt(4, lib.getEdicion());
-            ps.setDate(5, lib.getFecha());
-            ps.setString(6, lib.getNom_edt());
-            ps.setInt(7, lib.getAutor_id());
+            ps.setString(1, usu.getUsuario());
+            ps.setString(2, usu.getClave());
+            ps.setString(3, String.valueOf(per));
+            ps.setString(4, usu.getNomperm());
             ps.executeUpdate();            
             JOptionPane.showMessageDialog(null, "Datos ingresados correctamente");
         } catch (SQLException ex) {
@@ -76,5 +75,5 @@ public class Metodo_usuario {
                   JOptionPane.showMessageDialog(null, "ERROR");
         }
     }
-*/
+
 }
