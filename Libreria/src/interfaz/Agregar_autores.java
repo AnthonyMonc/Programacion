@@ -32,8 +32,9 @@ public class Agregar_autores extends javax.swing.JFrame {
         Modificar_autores aut = new Modificar_autores();
         btn_actualizar.setVisible(false);
         btn_agregar.setVisible(false);
-        String nomb = aut.nombre;
-        boolean verf = aut.IoM;
+        String nomb = aut.nombrea;
+        boolean verf = aut.IoMa;
+        
         if (verf==true){
         btn_actualizar.setVisible(true);
         autores autor = new Metodos_autores().Buscarautor(nomb);
@@ -41,7 +42,11 @@ public class Agregar_autores extends javax.swing.JFrame {
         txt_apellido.setText(autor.getApellido());
         txt_fechaN.setText(String.valueOf(autor.getFecha()));
         txt_numeroL.setText(String.valueOf(autor.getNum_libros()));
-        txt_ecuatoriano.setText(String.valueOf(autor.isEcuatoriano()));
+        if (autor.isEcuatoriano()==false){
+        cbx_ecu.setSelectedIndex(1);
+        }else {
+        cbx_ecu.setSelectedIndex(0);
+        }
         }
         
         if (verf==false){
@@ -72,8 +77,8 @@ public class Agregar_autores extends javax.swing.JFrame {
         txt_apellido = new javax.swing.JTextField();
         txt_fechaN = new javax.swing.JTextField();
         txt_numeroL = new javax.swing.JTextField();
-        txt_ecuatoriano = new javax.swing.JTextField();
         btn_agregar = new javax.swing.JButton();
+        cbx_ecu = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,6 +128,8 @@ public class Agregar_autores extends javax.swing.JFrame {
             }
         });
 
+        cbx_ecu.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lo es", "No lo es" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,13 +162,13 @@ public class Agregar_autores extends javax.swing.JFrame {
                                     .addComponent(txt_numeroL, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_apellido, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_ecuatoriano, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txt_fechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txt_fechaN, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbx_ecu, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_apellido, txt_ecuatoriano, txt_fechaN, txt_nombre, txt_numeroL});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txt_apellido, txt_fechaN, txt_nombre, txt_numeroL});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,7 +196,7 @@ public class Agregar_autores extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(txt_ecuatoriano, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbx_ecu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 96, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -219,6 +226,12 @@ public class Agregar_autores extends javax.swing.JFrame {
     }//GEN-LAST:event_tbl_salirAAActionPerformed
 
     private void btn_actualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_actualizarActionPerformed
+        boolean ect = true;
+        if (cbx_ecu.getSelectedIndex()==0){
+         ect = true;
+        }else {
+        ect = false;
+        }
         if(!txt_nombre.getText().trim().equals("")
                 && JOptionPane.showConfirmDialog(this, "Seguro que desea actualizar datos",
                         "Ingreso Cliente", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
@@ -227,18 +240,25 @@ public class Agregar_autores extends javax.swing.JFrame {
                     txt_apellido.getText(),
                     Date.valueOf(txt_fechaN.getText()),
                     Integer.parseInt(txt_numeroL.getText()),
-                    Boolean.getBoolean(txt_ecuatoriano.getText()));
+                    ect
+            );
                     meta.Actualizarlibro(autor);
         }
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
+                boolean ect = true;
+        if (cbx_ecu.getSelectedIndex()==0){
+         ect = true;
+        }else {
+        ect = false;
+        }
         autores autor = new autores();
         autor.setNombre(txt_nombre.getText());
         autor.setApellido(txt_apellido.getText());
         autor.setFecha(Date.valueOf(txt_fechaN.getText()));
         autor.setNum_libros(Integer.parseInt(txt_numeroL.getText()));
-        autor.setEcuatoriano(Boolean.getBoolean(txt_ecuatoriano.getText()));
+        autor.setEcuatoriano(ect);
         meta.ingresarArticulo(autor);
     }//GEN-LAST:event_btn_agregarActionPerformed
 
@@ -247,6 +267,7 @@ public class Agregar_autores extends javax.swing.JFrame {
     private javax.swing.JButton btn_actualizar;
     private javax.swing.JButton btn_agregar;
     private javax.swing.JButton btn_regresarAA;
+    private javax.swing.JComboBox<String> cbx_ecu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -255,7 +276,6 @@ public class Agregar_autores extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JButton tbl_salirAA;
     private javax.swing.JTextField txt_apellido;
-    private javax.swing.JTextField txt_ecuatoriano;
     private javax.swing.JTextField txt_fechaN;
     private javax.swing.JTextField txt_nombre;
     private javax.swing.JTextField txt_numeroL;

@@ -25,8 +25,8 @@ public class Modificar_autores extends javax.swing.JFrame {
 FondoPanel fondo =new FondoPanel();
 private DefaultTableModel dtm;
 Metodos_autores met = new Metodos_autores();   
-public static String nombre;
-public static boolean IoM;
+public static String nombrea;
+public static boolean IoMa;
 List<autores> aut = null;
  
     /**
@@ -121,6 +121,11 @@ initComponents();
         });
 
         jButton1.setText("INGRESAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,8 +197,8 @@ this.dispose();
         int filaSeleccionada = tbl_aut.getSelectedRow();
         if (filaSeleccionada >= 0) {
              dtm = (DefaultTableModel) tbl_aut.getModel();
-             nombre = (String) dtm.getValueAt(filaSeleccionada, 1);
-             IoM=true;
+             nombrea = (String) dtm.getValueAt(filaSeleccionada, 0);
+             IoMa=true;
              Agregar_autores mc = new Agregar_autores();
              mc.setVisible(true);
              this.dispose();
@@ -201,6 +206,13 @@ this.dispose();
             JOptionPane.showMessageDialog(null, "Seleccione la fila a modificar");
         }                                                       
     }//GEN-LAST:event_btn_actualizarMAActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+            IoMa=false;
+             Agregar_autores mc = new Agregar_autores();
+             mc.setVisible(true);
+             this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

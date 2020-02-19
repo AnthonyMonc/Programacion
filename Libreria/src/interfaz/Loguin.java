@@ -26,14 +26,14 @@ public class Loguin extends javax.swing.JFrame{
     
     Usuario usua = new Usuario();
     Metodo_usuario met = new Metodo_usuario();
-    private Menu principal;
+    
     /** Creates new form Loguin */
-    public Loguin(Menu p) {
+    public Loguin() {
         
         this.setContentPane(fondo);
         
         initComponents();
-        principal = p;
+        
         setTitle("Ingreso al Sistema");
     }
 
@@ -180,7 +180,7 @@ public class Loguin extends javax.swing.JFrame{
             men.getJ_autor().setEnabled(true);
             men.getJ_Mautores().setEnabled(false);
             men.getJ_Mlibros().setEnabled(false);
-//            dispose();
+            dispose();
             men.setVisible(true);
             
             JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
@@ -193,15 +193,15 @@ public class Loguin extends javax.swing.JFrame{
             men.getJ_autor().setEnabled(false);
             men.getJ_Mautores().setEnabled(true);
             men.getJ_Mlibros().setEnabled(true);
-  //          dispose();
+            dispose();
             men.setVisible(true);
             
             JOptionPane.showMessageDialog(this, perfil.getNombre2() + " autenticado con éxito", "EXITO", JOptionPane.INFORMATION_MESSAGE);
 
         } else { //autenticacion fallida
-            //dispose();
-            principal.getJ_administrador().setEnabled(false);
-            principal.getJ_cliente().setEnabled(false);
+            dispose();
+            men.getJ_administrador().setEnabled(false);
+            men.getJ_cliente().setEnabled(false);
             men.setVisible(true);
             JOptionPane.showMessageDialog(this, "Credenciales invalidas", "FAIL", JOptionPane.ERROR_MESSAGE);
         }

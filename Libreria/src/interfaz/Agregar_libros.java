@@ -41,7 +41,7 @@ public class Agregar_libros extends javax.swing.JFrame {
         btn_agregarAL.setVisible(false);
         Modificar_libros libr = new Modificar_libros();
         String nomb = libr.nombre;
-        boolean verf = libr.IoM;
+        boolean verf = libr.IoM; 
         if (verf==true){
         btn_agregarAL.setVisible(true);
         modelo.Libros libro = new Metodos_libro().Buscarlibro(nomb);

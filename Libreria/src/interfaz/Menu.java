@@ -33,7 +33,7 @@ public class Menu extends javax.swing.JFrame {
         j_loguin.setEnabled(true);
         j_cliente.setEnabled(false);
         j_administrador.setEnabled(false);
-        Loguin l = new Loguin(this);
+        Loguin l = new Loguin();
         
     }
 
@@ -199,7 +199,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void j_loguinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_j_loguinActionPerformed
-        Loguin log = new Loguin(this);
+        Loguin log = new Loguin();
         log.setVisible(true);
         this.setVisible(false);
           
