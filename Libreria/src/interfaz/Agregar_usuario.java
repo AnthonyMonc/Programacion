@@ -38,7 +38,6 @@ public class Agregar_usuario extends javax.swing.JFrame {
     private void initComponents() {
 
         txt_ausuario = new javax.swing.JTextField();
-        txt_aclave = new javax.swing.JTextField();
         txt_anomp = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -47,6 +46,7 @@ public class Agregar_usuario extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         cbx_permiso = new javax.swing.JComboBox<>();
+        psw_usu = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,23 +92,24 @@ public class Agregar_usuario extends javax.swing.JFrame {
                                         .addComponent(txt_ausuario))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel2)
-                                        .addGap(27, 27, 27)
-                                        .addComponent(txt_aclave))))
+                                        .addGap(0, 0, Short.MAX_VALUE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cbx_permiso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(18, 18, 18)
-                                    .addComponent(txt_anomp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(54, 54, 54))
+                                    .addComponent(txt_anomp, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(psw_usu, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(cbx_permiso, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                        .addGap(148, 148, 148))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(52, 52, 52)
-                        .addComponent(jButton2)))
-                .addGap(94, 94, 94))
+                        .addComponent(jButton2)
+                        .addGap(94, 94, 94))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,8 +120,8 @@ public class Agregar_usuario extends javax.swing.JFrame {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_aclave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(jLabel2)
+                    .addComponent(psw_usu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -142,7 +143,7 @@ public class Agregar_usuario extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Usuario nuevou = new Usuario();
         nuevou.setUsuario(txt_ausuario.getText());
-        nuevou.setClave(txt_aclave.getText());
+        nuevou.setClave(psw_usu.getText());
         //nuevou.setPermiso(txt_apermiso.getText().charAt(0));
         nuevou.setPermiso(cbx_permiso.getSelectedItem().toString().charAt(0));
         nuevou.setNomperm(txt_anomp.getText());
@@ -168,7 +169,7 @@ public class Agregar_usuario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JTextField txt_aclave;
+    private javax.swing.JPasswordField psw_usu;
     private javax.swing.JTextField txt_anomp;
     private javax.swing.JTextField txt_ausuario;
     // End of variables declaration//GEN-END:variables

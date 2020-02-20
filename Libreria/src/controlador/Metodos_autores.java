@@ -78,11 +78,10 @@ public class Metodos_autores {
             }
             return autor;
     }
-   
-        public void Actualizarlibro(autores aut) {
+  public void ActualizarAutor(autores aut) {
 
-        String sqlCliente = "UPDATE LIBROS SET NOMBRES=?, APELLIDO=?, FEC_NAC=?, NUM_LIBROS=?, ECUATORIANO=? WHERE NOMBRES=? ";
-        PreparedStatement ps =null;
+        String sqlCliente = "UPDATE AUTORES SET NOMBRES =?,  APELLIDO =?, FEC_NAC =?, NUM_LIBROS = ?, ECUATORIANO = ? WHERE NOMBRES = ?";
+        
             try {
                 ps= conexion.getConxion().prepareStatement(sqlCliente);
                 ps.setString(1, aut.getNombre());
@@ -95,9 +94,9 @@ public class Metodos_autores {
                 JOptionPane.showMessageDialog(null, "Datos Actualizados");
                 
             } catch (SQLException ex) {
-             //   Logger.getLogger(ClienteMetodos.class.getName()).log(Level.SEVERE, null, ex);
+               Logger.getLogger(Metodos_autores.class.getName()).log(Level.SEVERE, null, ex);
             }}
-
+  
     public void ingresarArticulo(autores aut){
         
         String sqlInsert = 
@@ -118,7 +117,7 @@ public class Metodos_autores {
     }
     
     public void eliminarRegistro(String aut) {
-        String delete = "delete from LIBROS where NOMBRE = ?";
+        String delete = "delete from AUTORES where NOMBRES = ?";
 
         try {
             ps = conexion.getConxion().prepareStatement(delete);

@@ -6,8 +6,10 @@
 package interfaz;
 
 import controlador.Metodos_autores;
+import controlador.Metodos_verificacion;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.event.KeyEvent;
 import java.sql.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -22,6 +24,7 @@ public class Agregar_autores extends javax.swing.JFrame {
 
      FondoPanel fondo =new FondoPanel();
      Metodos_autores meta = new Metodos_autores();
+     Metodos_verificacion verf = new Metodos_verificacion();
    
     /**
      * Creates new form Agregar_autores
@@ -118,6 +121,29 @@ public class Agregar_autores extends javax.swing.JFrame {
         txt_nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_nombreActionPerformed(evt);
+            }
+        });
+        txt_nombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreKeyTyped(evt);
+            }
+        });
+
+        txt_apellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_apellidoKeyTyped(evt);
+            }
+        });
+
+        txt_fechaN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_fechaNKeyTyped(evt);
+            }
+        });
+
+        txt_numeroL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_numeroLKeyTyped(evt);
             }
         });
 
@@ -242,12 +268,18 @@ public class Agregar_autores extends javax.swing.JFrame {
                     Integer.parseInt(txt_numeroL.getText()),
                     ect
             );
-                    meta.Actualizarlibro(autor);
+                    meta.ActualizarAutor(autor);
         }
     }//GEN-LAST:event_btn_actualizarActionPerformed
 
     private void btn_agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_agregarActionPerformed
-                boolean ect = true;
+    if(txt_nombre.getText().equals("") || txt_apellido.getText().equals("")
+                || txt_numeroL.getText().equals("")){
+           
+           JOptionPane.showMessageDialog(null, "Ingrese toda la informacion");
+              }else{
+        
+        boolean ect = true;
         if (cbx_ecu.getSelectedIndex()==0){
          ect = true;
         }else {
@@ -259,9 +291,39 @@ public class Agregar_autores extends javax.swing.JFrame {
         autor.setFecha(Date.valueOf(txt_fechaN.getText()));
         autor.setNum_libros(Integer.parseInt(txt_numeroL.getText()));
         autor.setEcuatoriano(ect);
-        meta.ingresarArticulo(autor);
+        meta.ingresarArticulo(autor);}
     }//GEN-LAST:event_btn_agregarActionPerformed
 
+    private void txt_nombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreKeyTyped
+        verf.letras(evt);
+    }//GEN-LAST:event_txt_nombreKeyTyped
+
+    private void txt_apellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_apellidoKeyTyped
+        verf.letras(evt);
+    }//GEN-LAST:event_txt_apellidoKeyTyped
+
+    private void txt_numeroLKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numeroLKeyTyped
+        verf.numeros(evt);
+    }//GEN-LAST:event_txt_numeroLKeyTyped
+
+    private void txt_fechaNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fechaNKeyTyped
+          verf.Fecha(evt);       
+       if (txt_fechaN.getText().length()==9){
+           char m = txt_fechaN.getText().charAt(5);
+           int mes = Integer.parseInt(String.valueOf(m));
+        System.out.println("mes :" +(mes) );
+       if (txt_fechaN.getText().charAt(4)!='-'&& txt_fechaN.getText().charAt(7)!='-'
+           && mes>1    ){
+           txt_fechaN.setText("");
+           evt.consume();
+           JOptionPane.showMessageDialog(null, "Ingrese la Fecha con el Formato aaaa-mm-dd");}
+       }else if (txt_fechaN.getText().length()>9){
+           txt_fechaN.setText("");
+           evt.consume();
+           JOptionPane.showMessageDialog(null, "Ingrese la Fecha con el Formato aaaa-mm-dd");}
+    }//GEN-LAST:event_txt_fechaNKeyTyped
+
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_actualizar;

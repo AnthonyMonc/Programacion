@@ -39,7 +39,7 @@ public List<Libros> ListarLibro() {
                 rs = stlibro.executeQuery(sqllibro);
                 while(rs.next()){
                 int id_libro= rs.getInt("COD_LIBRO");
-                int icbn= rs.getInt("ICBN");
+                float icbn= rs.getFloat("ICBN");
                 String nom= rs.getString("NOMBRE");
                 int num_pag= rs.getInt("NUM_PAG");
                 int edi= rs.getInt("EDICION");
@@ -67,7 +67,7 @@ public Libros Buscarlibro(String lib){
                 rs=psCliente.executeQuery();               
                 while(rs.next()){
                 int id_libro= rs.getInt("COD_LIBRO");
-                int icbn= rs.getInt("ICBN");
+                float icbn= rs.getFloat("ICBN");
                 String nom= rs.getString("NOMBRE");
                 int num_pag= rs.getInt("NUM_PAG");
                 int edi= rs.getInt("EDICION");
@@ -88,7 +88,7 @@ public void Actualizarlibro(Libros lib) {
         PreparedStatement ps =null;
             try {
                 ps= conexion.getConxion().prepareStatement(sqlCliente);
-                ps.setInt(1, lib.getIcbn());
+                ps.setFloat(1, lib.getIcbn());
                 ps.setString(2, lib.getNombre());
                 ps.setInt(3, lib.getNum_pag());
                 ps.setInt(4, lib.getEdicion());
@@ -110,7 +110,7 @@ public void ingresarArticulo(Libros lib){
                 "INSERT into LIBROS  (ICBN , NOMBRE , NUM_PAG ,  EDICION , FEC_PUBLIC , NOM_EDITORIAL , AUTORID ) values (?,?,?,?,?,?,?);";
         try {
             ps = conexion.getConxion().prepareStatement(sqlInsert);
-            ps.setInt(1, lib.getIcbn());
+            ps.setFloat(1, lib.getIcbn());
             ps.setString(2, lib.getNombre());
             ps.setInt(3, lib.getNum_pag());
             ps.setInt(4, lib.getEdicion());
@@ -125,16 +125,16 @@ public void ingresarArticulo(Libros lib){
         }
     }
     
-public void eliminarRegistro(String lib) {
-        String delete = "delete from LIBROS where NOMBRE = ?";
+public void eliminarRegistro(int lib) {
+        String delete = "delete from LIBROS where COD_LIBRO = ?";
 
         try {
             ps = conexion.getConxion().prepareStatement(delete);
-            ps.setString(1, lib);
+            ps.setInt(1, lib);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Datos Eliminados correctamente");
         } catch (SQLException ex) {
-            //Logger.getLogger(controladorArticulo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos_libro.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

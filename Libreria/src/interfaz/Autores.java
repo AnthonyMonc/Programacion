@@ -191,13 +191,17 @@ Metodos_autores met = new Metodos_autores();
     }//GEN-LAST:event_btn_buscarUActionPerformed
 
     private void btn_regresarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarUActionPerformed
+    
     Menu me=new Menu();
+    me.getJ_cliente().setEnabled(true);
+    me.getJ_autor().setEnabled(true);
+    me.getJ_libros().setEnabled(true);
     me.setVisible(true);
     this.setVisible(false);
     }//GEN-LAST:event_btn_regresarUActionPerformed
 
     private void btn_salirUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_salirUActionPerformed
-    this.dispose();        // TODO add your handling code here:
+    this.dispose();        
     }//GEN-LAST:event_btn_salirUActionPerformed
 
     public void eliminar(){ 

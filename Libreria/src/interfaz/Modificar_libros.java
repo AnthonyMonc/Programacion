@@ -24,7 +24,8 @@ public class Modificar_libros extends javax.swing.JFrame {
     
      FondoPanel fondo =new FondoPanel();
     
-    public static String nombre;
+    public static int nombre;
+    public static String nombrea;
     public static boolean IoM;
     private DefaultTableModel dtm;
     Metodos_libro metl = new Metodos_libro();
@@ -42,7 +43,7 @@ public class Modificar_libros extends javax.swing.JFrame {
         
         for (modelo.Libros li: libro) {
            Vector fila = new Vector();
-//            fila.add(au.getId_autor());
+            fila.add(li.getCod_libro());
             fila.add(li.getIcbn());
             fila.add(li.getNombre());
             fila.add(li.getNum_pag());
@@ -80,14 +81,14 @@ public class Modificar_libros extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ICBN", "Nombre", "Numero de Pag.", "Edicion", "Fecha publicacion", "Nombre editorial", "Aurtor ID"
+                "ID ", "ICBN", "Nombre", "Numero de Pag.", "Edicion", "Fecha publicacion", "Nombre editorial", "Aurtor ID"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -142,9 +143,6 @@ public class Modificar_libros extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 608, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
@@ -157,17 +155,20 @@ public class Modificar_libros extends javax.swing.JFrame {
                         .addGap(61, 61, 61)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_regresarML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btn_salirML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btn_salirML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(223, 223, 223)
+                        .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addContainerGap(16, Short.MAX_VALUE)
                 .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -177,20 +178,24 @@ public class Modificar_libros extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btn_actualizarML)
                             .addComponent(btn_salirML))
-                        .addContainerGap(58, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(169, 169, 169)
                         .addComponent(btn_ingresar)
-                        .addGap(74, 74, 74))))
+                        .addGap(51, 51, 51))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btn_regresarMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_regresarMLActionPerformed
-Menu me=new Menu();
-  me.setVisible(true);
-  this.setVisible(false);
+    
+        Menu me=new Menu();
+        me.getJ_administrador().setEnabled(true);
+        me.getJ_Mautores().setEnabled(true);
+        me.getJ_Mlibros().setEnabled(true);
+        me.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_btn_regresarMLActionPerformed
 
@@ -202,7 +207,7 @@ this.dispose();
         int filaSeleccionada = tbl_lib.getSelectedRow();
         if (filaSeleccionada >= 0) {
              dtm = (DefaultTableModel) tbl_lib.getModel();
-             nombre = (String) dtm.getValueAt(filaSeleccionada, 1);
+             nombrea = (String) dtm.getValueAt(filaSeleccionada, 2);
              IoM=true;
              Agregar_libros mc = new Agregar_libros();
              mc.setVisible(true);
@@ -224,9 +229,9 @@ this.dispose();
         int filaSeleccionada = tbl_lib.getSelectedRow();
         if (filaSeleccionada >= 0) {
              dtm = (DefaultTableModel) tbl_lib.getModel();
-             nombre = (String) dtm.getValueAt(filaSeleccionada, 1);
-             if(!nombre.trim().equals("")
-                && JOptionPane.showConfirmDialog(this, "Seguro que desea Eliminar",
+             nombre = (int) dtm.getValueAt(filaSeleccionada, 0);
+             
+             if(JOptionPane.showConfirmDialog(this, "Seguro que desea Eliminar",
                         "Ingreso Cliente", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
              metl.eliminarRegistro(nombre);
              eliminar();
@@ -268,7 +273,7 @@ this.dispose();
         
         for (modelo.Libros li: libro) {
            Vector fila = new Vector();
-//            fila.add(au.getId_autor());
+            fila.add(li.getCod_libro());
             fila.add(li.getIcbn());
             fila.add(li.getNombre());
             fila.add(li.getNum_pag());

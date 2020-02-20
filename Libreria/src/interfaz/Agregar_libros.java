@@ -6,6 +6,7 @@
 package interfaz;
 
 import controlador.Metodos_libro;
+import controlador.Metodos_verificacion;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.text.SimpleDateFormat;
@@ -26,6 +27,7 @@ public class Agregar_libros extends javax.swing.JFrame {
     FondoPanel fondo =new FondoPanel();
     Metodos_libro metl = new Metodos_libro();
     modelo.Libros lib= null;
+    Metodos_verificacion verf = new Metodos_verificacion();
     
     /**
      * Creates new form Agregar_libros
@@ -40,7 +42,7 @@ public class Agregar_libros extends javax.swing.JFrame {
         btn_ingresar.setVisible(false);
         btn_agregarAL.setVisible(false);
         Modificar_libros libr = new Modificar_libros();
-        String nomb = libr.nombre;
+        String nomb = libr.nombrea;
         boolean verf = libr.IoM; 
         if (verf==true){
         btn_agregarAL.setVisible(true);
@@ -128,6 +130,48 @@ public class Agregar_libros extends javax.swing.JFrame {
             }
         });
 
+        txt_ICBN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_ICBNKeyTyped(evt);
+            }
+        });
+
+        txt_nombreAL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreALKeyTyped(evt);
+            }
+        });
+
+        txt_numeroP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_numeroPKeyTyped(evt);
+            }
+        });
+
+        txt_edicion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_edicionKeyTyped(evt);
+            }
+        });
+
+        txt_fechaP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_fechaPKeyTyped(evt);
+            }
+        });
+
+        txt_nombreE.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_nombreEKeyTyped(evt);
+            }
+        });
+
+        txt_autorID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_autorIDKeyTyped(evt);
+            }
+        });
+
         btn_ingresar.setText("INGRESAR");
         btn_ingresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,9 +198,9 @@ public class Agregar_libros extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btn_salirAL))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
                                     .addComponent(jLabel7)
@@ -173,9 +217,7 @@ public class Agregar_libros extends javax.swing.JFrame {
                                     .addComponent(txt_ICBN, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_nombreAL, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txt_numeroP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addComponent(jLabel8)))
+                            .addComponent(jLabel8))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -249,7 +291,7 @@ this.dispose();
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date fechanac=null;
             modelo.Libros cliente= new modelo.Libros(
-                    Integer.parseInt(txt_ICBN.getText()), 
+                    Float.parseFloat(txt_ICBN.getText()), 
                     txt_nombreAL.getText(), 
                     Integer.parseInt(txt_numeroP.getText()), 
                     Integer.parseInt(txt_edicion.getText()),
@@ -262,16 +304,67 @@ this.dispose();
     }//GEN-LAST:event_btn_agregarALActionPerformed
 
     private void btn_ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_ingresarActionPerformed
+if(txt_ICBN.getText().equals("") || txt_nombreAL.getText().equals("")
+                || txt_numeroP.getText().equals("") || txt_edicion.getText().equals("")){
+           
+           JOptionPane.showMessageDialog(null, "Ingrese toda la informacion");
+              }else{
+
         modelo.Libros nuevolibro = new modelo.Libros();
-        nuevolibro.setIcbn(Integer.parseInt(txt_ICBN.getText()));
+        nuevolibro.setIcbn(Float.parseFloat(txt_ICBN.getText()));
         nuevolibro.setNombre(txt_nombreAL.getText());
         nuevolibro.setNum_pag(Integer.parseInt(txt_numeroP.getText()));
         nuevolibro.setEdicion(Integer.parseInt(txt_edicion.getText()));
         nuevolibro.setFecha(java.sql.Date.valueOf(txt_fechaP.getText()));
         nuevolibro.setNom_edt(txt_nombreE.getText());
         nuevolibro.setAutor_id(Integer.parseInt(txt_autorID.getText()));
-        metl.ingresarArticulo(nuevolibro);
+        metl.ingresarArticulo(nuevolibro);}
     }//GEN-LAST:event_btn_ingresarActionPerformed
+
+    private void txt_nombreALKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreALKeyTyped
+      verf.letras(evt);
+    }//GEN-LAST:event_txt_nombreALKeyTyped
+
+    private void txt_nombreEKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_nombreEKeyTyped
+        verf.letras(evt);
+    }//GEN-LAST:event_txt_nombreEKeyTyped
+
+    private void txt_ICBNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_ICBNKeyTyped
+        verf.numeros(evt);
+        if (txt_ICBN.getText().length()>13){
+           txt_ICBN.setText("");
+           evt.consume();
+           JOptionPane.showMessageDialog(null, "Ingrese maximo 13 números");}
+    }//GEN-LAST:event_txt_ICBNKeyTyped
+
+    private void txt_numeroPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_numeroPKeyTyped
+        verf.numeros(evt);
+    }//GEN-LAST:event_txt_numeroPKeyTyped
+
+    private void txt_edicionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_edicionKeyTyped
+        verf.numeros(evt);
+    }//GEN-LAST:event_txt_edicionKeyTyped
+
+    private void txt_autorIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_autorIDKeyTyped
+        verf.numeros(evt);
+    }//GEN-LAST:event_txt_autorIDKeyTyped
+
+    private void txt_fechaPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_fechaPKeyTyped
+        verf.Fecha(evt);       
+       if (txt_fechaP.getText().length()==9){
+           char m = txt_fechaP.getText().charAt(5);
+           int mes = Integer.parseInt(String.valueOf(m));
+        System.out.println("mes :" +(mes) );
+       if (txt_fechaP.getText().charAt(4)!='-'&& txt_fechaP.getText().charAt(7)!='-'
+           && mes>1    ){
+           txt_fechaP.setText("");
+           evt.consume();
+           JOptionPane.showMessageDialog(null, "Ingrese la Fecha con el Formato aaaa-mm-dd");}
+       }else if (txt_fechaP.getText().length()>9){
+           txt_fechaP.setText("");
+           evt.consume();
+           JOptionPane.showMessageDialog(null, "Ingrese la Fecha con el Formato aaaa-mm-dd");}
+    }//GEN-LAST:event_txt_fechaPKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -314,9 +407,4 @@ this.dispose();
             super.paint(g);
         }
     }
-    
-  
-
-
-
 }

@@ -14,7 +14,7 @@ import java.sql.Date;
 public class Libros {
     
     private int cod_libro;
-    private int icbn;
+    private float icbn;
     private String nombre;
     private int num_pag;
     private int edicion;
@@ -30,11 +30,11 @@ public class Libros {
         this.cod_libro = cod_libro;
     }
 
-    public int getIcbn() {
+    public float getIcbn() {
         return icbn;
     }
 
-    public void setIcbn(int icbn) {
+    public void setIcbn(float icbn) {
         this.icbn = icbn;
     }
 
@@ -89,7 +89,7 @@ public class Libros {
     public Libros() {
     }
 
-    public Libros(int cod_libro, int icbn, String nombre, int num_pag, int edicion, Date fecha, String nom_edt, int autor_id) {
+    public Libros(int cod_libro, float icbn, String nombre, int num_pag, int edicion, Date fecha, String nom_edt, int autor_id) {
         this.cod_libro = cod_libro;
         this.icbn = icbn;
         this.nombre = nombre;
@@ -100,7 +100,7 @@ public class Libros {
         this.autor_id = autor_id;
     }
 
-    public Libros(int icbn, String nombre, int num_pag, int edicion, Date fecha, String nom_edt, int autor_id) {
+    public Libros(float icbn, String nombre, int num_pag, int edicion, Date fecha, String nom_edt, int autor_id) {
         this.icbn = icbn;
         this.nombre = nombre;
         this.num_pag = num_pag;
