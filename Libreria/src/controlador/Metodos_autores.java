@@ -116,16 +116,16 @@ public class Metodos_autores {
         }
     }
     
-    public void eliminarRegistro(String aut) {
-        String delete = "delete from AUTORES where NOMBRES = ?";
+    public void eliminarRegistro(int aut) {
+        String delete = "delete from AUTORES where COD_AUTOR = ?";
 
         try {
             ps = conexion.getConxion().prepareStatement(delete);
-            ps.setString(1, aut);
+            ps.setInt(1, aut);
             ps.executeUpdate();
             JOptionPane.showMessageDialog(null, "Datos Eliminados correctamente");
         } catch (SQLException ex) {
-            //Logger.getLogger(controladorArticulo.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Metodos_autores.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

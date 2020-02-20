@@ -39,7 +39,7 @@ initComponents();
         dtm = (DefaultTableModel) tbl_aut.getModel();        
         for (autores au: autor) {
            Vector fila = new Vector();
-//            fila.add(au.getId_autor());
+            fila.add(au.getId_autor());
             fila.add(au.getNombre());
             fila.add(au.getApellido());
             fila.add(au.getFecha());
@@ -77,14 +77,14 @@ initComponents();
 
             },
             new String [] {
-                "Nombre", "Apellido", "Fecha de naci.", "Numero de libros", "Ecuatoriano"
+                "ID", "Nombre", "Apellido", "Fecha de naci.", "Numero de libros", "Ecuatoriano"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -205,7 +205,7 @@ this.dispose();
         int filaSeleccionada = tbl_aut.getSelectedRow();
         if (filaSeleccionada >= 0) {
              dtm = (DefaultTableModel) tbl_aut.getModel();
-             nombrea = (String) dtm.getValueAt(filaSeleccionada, 0);
+             nombrea = (String) dtm.getValueAt(filaSeleccionada, 1);
              IoMa=true;
              Agregar_autores mc = new Agregar_autores();
              mc.setVisible(true);
@@ -226,11 +226,11 @@ this.dispose();
         int filaSeleccionada = tbl_aut.getSelectedRow();
         if (filaSeleccionada >= 0) {
              dtm = (DefaultTableModel) tbl_aut.getModel();
-             nombrea = (String) dtm.getValueAt(filaSeleccionada, 0);
-             if(!nombrea.trim().equals("")
-                && JOptionPane.showConfirmDialog(this, "Seguro que desea Eliminar",
+             
+             int el = (int) dtm.getValueAt(filaSeleccionada, 0);
+             if(JOptionPane.showConfirmDialog(this, "Seguro que desea Eliminar",
                         "Ingreso Cliente", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)==0){
-             met.eliminarRegistro(nombrea);
+             met.eliminarRegistro(el);
              eliminar();
              aut = met.ListarAutor();
              cargarTabla(aut);
@@ -258,7 +258,7 @@ this.dispose();
         dtm = (DefaultTableModel) tbl_aut.getModel();        
         for (autores au: autor) {
            Vector fila = new Vector();
-//            fila.add(au.getId_autor());
+            fila.add(au.getId_autor());
             fila.add(au.getNombre());
             fila.add(au.getApellido());
             fila.add(au.getFecha());
