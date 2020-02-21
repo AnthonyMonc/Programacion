@@ -188,9 +188,9 @@ public class Loguin extends javax.swing.JFrame{
         } else if (perfil != null && perfil.getPermiso() == 'a') { //administrador
             
             men.getJ_administrador().setEnabled(true);
-            men.getJ_cliente().setEnabled(true);
-            men.getJ_libros().setEnabled(true);
-            men.getJ_autor().setEnabled(true);
+            men.getJ_cliente().setEnabled(false);
+            men.getJ_libros().setEnabled(false);
+            men.getJ_autor().setEnabled(false);
             men.getJ_Mautores().setEnabled(true);
             men.getJ_Mlibros().setEnabled(true);
             dispose();
