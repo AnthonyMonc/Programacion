@@ -74,6 +74,7 @@ public class Modificar_libros extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel1.setText("Modificar LIbros");
 
         tbl_lib.setModel(new javax.swing.table.DefaultTableModel(

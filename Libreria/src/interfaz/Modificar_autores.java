@@ -70,6 +70,7 @@ initComponents();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel1.setText("Modificar Autores");
 
         tbl_aut.setModel(new javax.swing.table.DefaultTableModel(

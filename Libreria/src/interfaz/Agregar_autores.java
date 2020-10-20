@@ -85,6 +85,7 @@ public class Agregar_autores extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel1.setText("Agregar autores");
 
         btn_actualizar.setText("ACTUALIZAR");
