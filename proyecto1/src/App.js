@@ -4,8 +4,10 @@ import imagen_3 from './/Images/Goku.jpg';
 import imagen_4 from './/Images/Kakaroto.jpg';
 import imagen_5 from './/Images/wtf.png';
 import imagen_6 from './/Images/java.jpg';
+import practica1 from './datos/practica.json';
 import './App.css';
 import React from 'react';
+
 /*
 function Nombre(props) {
     console.log(props);
@@ -92,8 +94,7 @@ function App() {
         <Imagen2 datos="Imagen 2"></Imagen2>
         <Imagen3 datos="Imagen 3"></Imagen3>  
         </div>      
-         
-       
+                
        </header >       
        </div>
     );
