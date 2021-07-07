@@ -5,9 +5,20 @@ import imagen_4 from './/Images/Kakaroto.jpg';
 import imagen_5 from './/Images/wtf.png';
 import imagen_6 from './/Images/java.jpg';
 import practica1 from './datos/practica.json';
+import Elementos from './componentes/elementos'
 import './App.css';
 import React from 'react';
-
+class App extends React.Component{
+    state ={
+        practica1:practica1
+    }
+    render(){
+        return <div>
+            <Elementos>practica1={this.state.practica1}</Elementos>
+        </div>
+    }
+}
+export default App;
 /*
 function Nombre(props) {
     console.log(props);
