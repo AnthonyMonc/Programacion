@@ -78,3 +78,15 @@
     padding-right: 5%;
 
 }
+#botones{
+    background-color: #0c1be2;   
+    border:none;
+    color: white;    
+    text-align: center;        
+    font-size: 20px;
+    border-radius: 12px;
+    padding: 10px 10px 10px 10px;
+    margin-left: 10px;    
+    margin-right: 10px;
+
+}

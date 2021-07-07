@@ -42,9 +42,9 @@ class Imagenes extends React.Component{
  }
     render(){        
             return( <div id="imagens"><h3>{this.state.bandera}</h3>                              
-            <button onClick={this.cambiarImagen}> Cambiar Imagen1</button>
-            <button onClick={this.cambiarImagen2}> Cambiar Imagen2</button>
-            <button onClick={this.cambiarImagen3}> Cambiar Imagen3</button>
+            <button id="botones" onClick={this.cambiarImagen}> Cambiar Imagen 1</button>
+            <button id="botones" onClick={this.cambiarImagen2}> Cambiar Imagen 2</button>
+            <button id="botones" onClick={this.cambiarImagen3}> Cambiar Imagen 3</button>
             </div>);        
     }
 }
