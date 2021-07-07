@@ -1,24 +1,10 @@
 import imagen_1 from './/Images/messi.jpg';
 import imagen_2 from './/Images/fcb.jpg';
 import imagen_3 from './/Images/Goku.jpg';
-import imagen_4 from './/Images/Kakaroto.jpg';
-import imagen_5 from './/Images/wtf.png';
-import imagen_6 from './/Images/java.jpg';
-import practica1 from './datos/practica.json';
-import Elementos from './componentes/elementos'
+import imagen_4 from './/Images/wtf.png';
+
 import './App.css';
 import React from 'react';
-class App extends React.Component{
-    state ={
-        practica1:practica1
-    }
-    render(){
-        return <div>
-            <Elementos>practica1={this.state.practica1}</Elementos>
-        </div>
-    }
-}
-export default App;
 /*
 function Nombre(props) {
     console.log(props);
@@ -41,24 +27,28 @@ function Edad(props) {
     return( <div><h3>{props.datos}</h3> </div>);
 }*/
 //clase
-class Imagen1 extends React.Component{
+class Imagenes extends React.Component{
  state={
-     bandera:true
+     bandera:<img  id="img" src =  { imagen_4 }className = "App-logo"  alt = "logo"/>
  }
-  cambiarestado=()=>{
-    this.setState({bandera:!this.state.bandera});
+  cambiarImagen=()=>{
+    this.setState({bandera:<img  id="img" src =  { imagen_1 }className = "App-logo"  alt = "logo"/>});
  }
-    render(){
-        if(this.state.bandera){
-            return( <div id="imagen"><h3>{this.props.datos}</h3>            
-            <img id="img" src =  { imagen_1 }className = "App-logo"  alt = "logo"/>      
-            <button onClick={this.cambiarestado}> cambiar Estado</button>
-            </div>);
-        } else{
-            return(<div><h3>Cambio de Imagen </h3><img  id="img" src = { imagen_2 }className = "App-logo"  alt = "logo"/> <button onClick={this.cambiarestado}> cambiar Estado</button></div>  );
-        }
+ cambiarImagen2=()=>{
+    this.setState({bandera:<img  id="img" src =  { imagen_2 }className = "App-logo"  alt = "logo"/>});
+ }
+ cambiarImagen3=()=>{
+    this.setState({bandera:<img  id="img" src =  { imagen_3 }className = "App-logo"  alt = "logo"/>});
+ }
+    render(){        
+            return( <div id="imagens"><h3>{this.state.bandera}</h3>                              
+            <button onClick={this.cambiarImagen}> Cambiar Imagen1</button>
+            <button onClick={this.cambiarImagen2}> Cambiar Imagen2</button>
+            <button onClick={this.cambiarImagen3}> Cambiar Imagen3</button>
+            </div>);        
     }
 }
+/*
 class Imagen2 extends React.Component{
     state={
         bandera:true
@@ -95,17 +85,15 @@ class Imagen2 extends React.Component{
            }
        }
    }
-
+*/
 function App() {
     return ( 
         <div className = "App">            
         <header className = "App-header">          
-        <div id="container">
-        <Imagen1 datos="Imagen 1"></Imagen1>
-        <Imagen2 datos="Imagen 2"></Imagen2>
-        <Imagen3 datos="Imagen 3"></Imagen3>  
+        <h1>Taller de Imagenes</h1>
+        <div id="container">            
+        <Imagenes></Imagenes>        
         </div>      
-                
        </header >       
        </div>
     );

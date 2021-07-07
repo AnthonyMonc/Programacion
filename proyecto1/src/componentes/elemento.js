@@ -1,7 +1,13 @@
 import React from 'react';
+
 class Elemento extends React.Component{
     render(){
-        const
+        const {elem}=this.props;
+        return <div>
+            <button style={elem.color}>
+                {elem.nombre}
+            </button>
+        </div>
     }
 }
-export default Elementos;
+export default Elemento;
