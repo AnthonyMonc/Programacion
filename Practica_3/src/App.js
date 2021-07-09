@@ -24,14 +24,12 @@ class App extends React.Component{
     })
   }
 
-  eliminarElementoPractica1=(ids)=>{
-    
-    const eraseElement = this.state.practica1.splice(ids,-1);
-    
+  eliminarElementoPractica1=(id)=>{
+    const eraseElement  = this.state.practica1.length -1;
     console.log(eraseElement); 
     console.log("Metodo eliminar elemento Practica1")
     this.setState({      
-      practica1: this.state.practica1.splice(this.state.practica1.values[ids],1)
+      practica1: this.state.practica1.splice(1,eraseElement)
     })
 
 
