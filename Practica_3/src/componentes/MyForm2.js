@@ -19,7 +19,7 @@ class MyForm2  extends React.Component{
     }
     //el evento puede tener cualquier nombre
     //usamos name para poder traer el name del input
-    //captura cada que tecleamo
+    //captura cada que tecleamos
     myOnChange=(env)=>{
         //console.log("myOnChange", env.target.value, " name: ", env.target.name)
               this.setState({

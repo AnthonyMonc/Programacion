@@ -4,7 +4,7 @@ import React from 'react';
 class Elemento extends React.Component{
     
     eliminarElemento=()=>{
-        this.props.eliminarElementoPractica1();
+        this.props.eliminarElementoPractica1(this.props.elem.id);
     }
 
     render(){

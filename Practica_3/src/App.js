@@ -7,6 +7,7 @@ import MyForm2 from './componentes/MyForm2'
 class App extends React.Component{
 
   state ={
+    //un valor con le que puedo trabajar
     practica1:practica1
   }
 
@@ -25,18 +26,30 @@ class App extends React.Component{
   }
 
   eliminarElementoPractica1=(id)=>{
-    const eraseElement  = this.state.practica1.splice(-1);
+    //creamos una funcion flecha en la cual comparammos el id del objeto y si esque es diferente del id y asi retorna el areglo con los cambios ya hechos
+    const newState = this.state.practica1.reduce((newArr,obj)=>{
+      if(obj.id !== id){
+          return newArr.concat(obj);
+      }
+      return newArr
+    },[]);
+    this.setState({      
+      practica1: newState
+    })
+    /*const eraseElement  = this.state.practica1.splice(-1);
     console.log(eraseElement); 
     console.log("Metodo eliminar elemento Practica1")
     this.setState({      
       practica1: this.state.practica1.splice(eraseElement)
-    })
+    })*/
   }
    
       //en elementos podemos llamar a
     render(){
-//MyForm2 es un componente
+//MyForm2 es un componente y enviamos una funcion
+//<MyForm2 añadirElementoPractica1={this.añadirElementoPractica1} dato={this.state.practica1}/>
       return<div>        
+        
            <MyForm2 añadirElementoPractica1={this.añadirElementoPractica1} />
       <Elementos practica1={this.state.practica1} eliminarElementoPractica1={this.eliminarElementoPractica1} />
       </div>
