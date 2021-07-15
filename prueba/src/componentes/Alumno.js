@@ -6,10 +6,10 @@ class Alumno extends React.Component{
         console.log(this.props);
         return <div> 
         <h2>
-            "Nombre:" + {elem.nombre} +" " + "Apellido:"+{elem.apellido}
+            {elem.nombre}
         </h2>
         <h2>
-            "Tiene: " + {elem.edad} + "años"
+            {elem.edad}
         </h2>
         </div>
     }

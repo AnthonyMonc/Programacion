@@ -7,7 +7,7 @@ class Alumnos extends React.Component{
         render(){
             return this.props.datos.map((e)=><Alumno
             key={e.id}
-            elem={s}            
+            elem={e}            
             />)
         }
 }
