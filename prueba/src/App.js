@@ -24,6 +24,7 @@ class App extends React.Component {
     render(){
       return <div className="App">
         <Form añadiralumno={this.añadiralumno}/>
+        <Alumnos informacion={this.state.informacion}/>
       </div>
     }        
 }
