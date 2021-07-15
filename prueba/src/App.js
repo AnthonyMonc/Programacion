@@ -5,28 +5,27 @@ import Alumnos from './componentes/Alumnos';
 import React from 'react';
 
 class App extends React.Component {
-  render (){
+  
     state ={
       informacion:informacion
     }
-    return <div className="App">
-    <header className="App-header">
-      <img src={logo} className="App-logo" alt="logo" />
-      <p>
-        Edit <code>src/App.js</code> and save to reload.
-      </p>
-      <a
-        className="App-link"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Learn React
-      </a>
-    </header>
-  </div>
-  }
-    
+
+    añadiralumno = (nombreI, apellidoI,edadI)=>{
+      const nuevoAlum = {
+        id:this.state.informacion.slice(-1)[0].id+1,
+        nombre:nombreI,
+        apellido:apellidoI,
+        edad:edadI
+      }
+      this.setState({
+        informacion: [...this.state.informacion, nuevoAlum]
+      })
+    }
+    render(){
+      return <div className="App">
+        <Form añadiralumno={this.añadiralumno}/>
+      </div>
+    }        
 }
 
 export default App;
