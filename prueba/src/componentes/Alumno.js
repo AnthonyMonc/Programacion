@@ -5,12 +5,13 @@ class Alumno extends React.Component{
         const {elem}= this.props;
         console.log(this.props);
         return <div> 
-        <h2>
-            {elem.nombre}
-        </h2>
-        <h2>
+        <p>
+            {elem.nombre}       
+            {elem.apellido}       
             {elem.edad}
-        </h2>
+        </p>
+           
+        
         </div>
     }
 }
